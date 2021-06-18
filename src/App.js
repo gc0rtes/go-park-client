@@ -9,8 +9,10 @@ import { Switch, Route } from "react-router-dom";
 //to manage the messages from the routers
 import MessageBox from "./components/MessageBox";
 
+//Load Pages
 import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
+import Events from "./pages/Events";
 
 import { useDispatch, useSelector } from "react-redux";
 import { selectAppLoading } from "./store/appState/selectors";
@@ -29,7 +31,7 @@ function App() {
       <MessageBox />
       {isLoading ? "Loading" : null}
       <Switch>
-        {/* <Route exact path="/" component={Events} /> */}
+        <Route exact path="/" component={Events} />
         <Route path="/login" component={Login} />
         <Route path="/signup" component={SignUp} />
       </Switch>
