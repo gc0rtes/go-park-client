@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 export default function Artwork({
-  eventId,
+  id,
   imageUrl,
   title,
   startDate,
@@ -17,7 +17,7 @@ export default function Artwork({
         <h5>{startDate}</h5>
         <h5>{parkName}</h5>
         <h5>{cityName}</h5>
-        <Link to={`/details/${eventId}`}>Details</Link>
+        <Link to={`/event/${id}`}>Details</Link>
       </div>
     </div>
   );
