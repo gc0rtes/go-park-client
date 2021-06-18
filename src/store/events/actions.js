@@ -18,6 +18,7 @@ export const fetchEvents = () => {
       dispatch(fetchEventsSuccess(response.data.events));
 
       //manange error message
+      //se eu nao quiser mostrar o erri posso hardcode: "Server error / Internal Server "
     } catch (error) {
       if (error.response) {
         console.log(error.response.data.message);
