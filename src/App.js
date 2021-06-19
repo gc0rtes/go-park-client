@@ -14,6 +14,7 @@ import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
 import Events from "./pages/Events";
 import EventDetails from "./pages/EventDetails";
+import PostEvent from "./pages/PostEvent";
 
 import { useDispatch, useSelector } from "react-redux";
 import { selectAppLoading } from "./store/appState/selectors";
@@ -35,6 +36,7 @@ function App() {
         <Route exact path="/" component={Events} />
         <Route path="/login" component={Login} />
         <Route path="/signup" component={SignUp} />
+        <Route path="/postevent" component={PostEvent} />
         <Route path="/event/:id" component={EventDetails} />
       </Switch>
     </div>
