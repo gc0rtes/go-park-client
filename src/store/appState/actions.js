@@ -13,9 +13,9 @@ export const setMessage = (variant, dismissable, text) => {
   return {
     type: SET_MESSAGE,
     payload: {
-      variant,
-      dismissable,
-      text,
+      variant, //danger: algo errado //success
+      dismissable, //true: msg desaparece
+      text, //mensagem para o usuario
     },
   };
 };

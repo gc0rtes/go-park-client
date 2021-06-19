@@ -39,7 +39,7 @@ export const signUp = (imageUrl, name, email, password) => {
       });
 
       dispatch(loginSuccess(response.data));
-      dispatch(showMessageWithTimeout("success", true, "account created"));
+      dispatch(showMessageWithTimeout("success", true, "account created")); //msg que aparecen/desaparece
       dispatch(appDoneLoading());
     } catch (error) {
       if (error.response) {

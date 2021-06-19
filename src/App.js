@@ -13,6 +13,7 @@ import MessageBox from "./components/MessageBox";
 import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
 import Events from "./pages/Events";
+import EventDetails from "./pages/EventDetails";
 
 import { useDispatch, useSelector } from "react-redux";
 import { selectAppLoading } from "./store/appState/selectors";
@@ -29,11 +30,12 @@ function App() {
   return (
     <div className="App">
       <MessageBox />
-      {isLoading ? "Loading" : null}
+      {isLoading ? "Loading App" : null}
       <Switch>
         <Route exact path="/" component={Events} />
         <Route path="/login" component={Login} />
         <Route path="/signup" component={SignUp} />
+        <Route path="/event/:id" component={EventDetails} />
       </Switch>
     </div>
   );
