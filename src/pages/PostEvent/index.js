@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 import { selectToken } from "../../store/user/selectors";
-//import { postEvent } from "../../store/eventDetails/actions";
+import { postEvent } from "../../store/eventDetails/actions";
 
-//CheckBox management: https://www.pluralsight.com/guides/handling-multiple-inputs-with-single-onchange-handler-react
+//CheckBox management reference: https://www.pluralsight.com/guides/handling-multiple-inputs-with-single-onchange-handler-react
 
 export default function PostEvent() {
   const token = useSelector(selectToken);
@@ -15,56 +15,62 @@ export default function PostEvent() {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [phone, setPhone] = useState("");
-  // const [city, setCity] = useState("");
-  const [parkId, setParkId] = useState("");
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
   const [startHour, setStartHour] = useState("");
-  const [lat, setLat] = useState(0);
-  const [lng, setLng] = useState(0);
+  const [parkId, setParkId] = useState();
+  const [tagId, setTagId] = useState("");
+  // TODO: lat and lng is to User set the EVENT location on leaflet map
+  // const [lat, setLat] = useState(0);
+  // const [lng, setLng] = useState(0);
 
-  console.log("what is startHour", startHour, typeof startHour);
-  console.log("what is startDate", startDate, typeof startDate);
-  console.log("what is endDate", endDate, typeof endDate);
+  //mapCenterPark is to show the map center location on leaflet
+  //It'll switch according parkId selected
+  const mapCenterPark1 = [52.055858, 4.285709];
+  const mapCenterPark2 = [52.105771, 4.290591];
+  const mapCenterPark3 = [52.394852, 4.919604];
+  const mapCenterPark4 = [52.386702, 4.876364];
 
-  // console.log("what is city", city);
-  // console.log("what is park", park);
+  // TODO: Get user Event location coordenates from LEAFLET MAP
+  // For now just hard coding the Event location coordenates
+  const lat = 52.055858;
+  const lng = 4.285709;
 
-  //Checkbox Initial State
-  const [state, setState] = React.useState({
-    music: false,
-    sport: false,
-    meetup: false,
-    dance: false,
-    artMartial: false,
-    fitness: false,
-    game: false,
-    education: false,
-  });
+  // const userId = user.id;
 
-  // console.log("what is music", state.music);
-  // console.log("what is sport", state.sport);
-  // console.log("what is meetup", state.meetup);
-  // console.log("what is dance", state.dance);
-  // console.log("what is artMartial", state.artMartial);
-  // console.log("what is fitness", state.fitness);
-  // console.log("what is game", state.game);
-  // console.log("what is education", state.education);
+  //Set of information to post a Event
+  console.log(imageUrl);
+  console.log(title);
+  console.log(description);
+  console.log(phone);
+  console.log("what is startDate", startDate, typeof startDate); //string
+  console.log("what is endDate", endDate, typeof endDate); //string
+  console.log("what is startHour", startHour, typeof startHour); //string
+  console.log("what is lat", lat);
+  console.log("what is lng", lng);
+  console.log("what is parkId", parkId, typeof parkId); //REMEMBER to parseInt before dispatch
+  // REMEBER: Is not necessary to send userId on body. Router get it from authMiddleware
 
-  function handleChange(event) {
-    const value =
-      event.target.type === "checkbox"
-        ? event.target.checked
-        : event.target.value;
-    setState({
-      ...state,
-      [event.target.name]: value,
-    });
+  //TODO: Create an action to update the table tagEvents
+  console.log("what is tagId", tagId); //REMEMBER to parseInt before dispatch
+
+  function submitForm(e) {
+    e.preventDefault();
+    dispatch(
+      postEvent(
+        imageUrl,
+        title,
+        description,
+        phone,
+        startDate,
+        endDate,
+        startHour,
+        lat,
+        lng,
+        parkId
+      )
+    );
   }
-
-  // function submitForm(event) {
-  //   dispatch(postEvent(title, imageUrl, minimumBid));
-  // }
 
   if (!token) {
     return <div>You need to login to post a Event</div>;
@@ -75,7 +81,7 @@ export default function PostEvent() {
       <p>
         <label>
           {" "}
-          Profile Photo:{" "}
+          Event Photo Url:{" "}
           <input
             type="text"
             value={imageUrl}
@@ -102,11 +108,9 @@ export default function PostEvent() {
           {" "}
           Description:{" "}
           <input
-            type="textarea"
-            cols="60"
-            rows="10"
+            type="text"
             value={description}
-            placeholder="You Event's descriptions here"
+            placeholder="Event descriptions here"
             onChange={(e) => setDescription(e.target.value)}
             required
           />
@@ -115,27 +119,26 @@ export default function PostEvent() {
       <p>
         <label>
           {" "}
-          Event's Phone Number (optional):{" "}
+          Event's Phone Number:{" "}
           <input
             type="number"
             value={phone}
-            placeholder="You Event's descriptions here"
+            placeholder="Event's phone number here"
             onChange={(e) => setPhone(e.target.value)}
             required
           />
         </label>
       </p>
-      <h4>Choose at least 1 tag:</h4>
+      <h4>Choose one category:</h4>
       <p>
         <label>
           {" "}
           Music:{" "}
           <input
-            type="checkbox"
-            name={"music"}
-            checked={state.music}
-            onChange={handleChange}
-            // onChange={() => setIsArtist(!isArtist)}
+            value={"1"}
+            type="radio"
+            name={"category"}
+            onChange={(e) => setTagId(e.target.value)}
           />
         </label>
       </p>
@@ -144,11 +147,10 @@ export default function PostEvent() {
           {" "}
           Sport:{" "}
           <input
-            type="checkbox"
-            name={"sport"}
-            checked={state.sport}
-            onChange={handleChange}
-            // onChange={() => setIsArtist(!isArtist)}
+            value={"2"}
+            type="radio"
+            name={"category"}
+            onChange={(e) => setTagId(e.target.value)}
           />
         </label>
       </p>
@@ -157,11 +159,10 @@ export default function PostEvent() {
           {" "}
           MeetUp:{" "}
           <input
-            type="checkbox"
-            name={"meetup"}
-            checked={state.meetup}
-            onChange={handleChange}
-            // onChange={() => setIsArtist(!isArtist)}
+            value={"3"}
+            type="radio"
+            name={"category"}
+            onChange={(e) => setTagId(e.target.value)}
           />
         </label>
       </p>
@@ -170,11 +171,10 @@ export default function PostEvent() {
           {" "}
           Dance:{" "}
           <input
-            type="checkbox"
-            name={"dance"}
-            checked={state.dance}
-            onChange={handleChange}
-            // onChange={() => setIsArtist(!isArtist)}
+            value={"4"}
+            type="radio"
+            name={"category"}
+            onChange={(e) => setTagId(e.target.value)}
           />
         </label>
       </p>
@@ -183,11 +183,10 @@ export default function PostEvent() {
           {" "}
           Art Martial:{" "}
           <input
-            type="checkbox"
-            name={"artMartial"}
-            checked={state.artMartial}
-            onChange={handleChange}
-            // onChange={() => setIsArtist(!isArtist)}
+            value={"5"}
+            type="radio"
+            name={"category"}
+            onChange={(e) => setTagId(e.target.value)}
           />
         </label>
       </p>
@@ -196,11 +195,10 @@ export default function PostEvent() {
           {" "}
           Fitness:{" "}
           <input
-            type="checkbox"
-            name={"fitness"}
-            checked={state.fitness}
-            onChange={handleChange}
-            // onChange={() => setIsArtist(!isArtist)}
+            value={"6"}
+            type="radio"
+            name={"category"}
+            onChange={(e) => setTagId(e.target.value)}
           />
         </label>
       </p>
@@ -209,11 +207,10 @@ export default function PostEvent() {
           {" "}
           Game:{" "}
           <input
-            type="checkbox"
-            name={"game"}
-            checked={state.game}
-            onChange={handleChange}
-            // onChange={() => setIsArtist(!isArtist)}
+            value={"7"}
+            type="radio"
+            name={"category"}
+            onChange={(e) => setTagId(e.target.value)}
           />
         </label>
       </p>
@@ -222,11 +219,10 @@ export default function PostEvent() {
           {" "}
           Education:{" "}
           <input
-            type="checkbox"
-            name={"education"}
-            checked={state.education}
-            onChange={handleChange}
-            // onChange={() => setIsArtist(!isArtist)}
+            value={"8"}
+            type="radio"
+            name={"category"}
+            onChange={(e) => setTagId(e.target.value)}
           />
         </label>
       </p>
@@ -237,7 +233,9 @@ export default function PostEvent() {
           <select
             name="park"
             value={parkId}
-            onChange={(e) => setParkId(e.target.value)}
+            onChange={(e) => {
+              setParkId(parseInt(e.target.value));
+            }}
           >
             <option defaultValue>Select below</option>
             <option value="1">The Hague: Zuiderpark</option>
@@ -276,10 +274,10 @@ export default function PostEvent() {
       </p>
       {/* TODO: INSERT MAP ACCORDING CHOSE PARK  AND LET THE USER INSERT A LOCATION*/}
       <p>
-        {/* <button type="submit" onClick={submitForm}>
+        <button type="submit" onClick={submitForm}>
           {" "}
           CREATE{" "}
-        </button> */}
+        </button>
       </p>
     </form>
   );
