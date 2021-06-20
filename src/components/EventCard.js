@@ -10,9 +10,9 @@ export default function Artwork({
   cityName,
 }) {
   return (
-    <div className="container">
-      <div className="card">
-        <img className="d-block w-100" src={imageUrl} alt={title} />
+    <div>
+      <div>
+        <img src={imageUrl} alt={title} />
         <h3>{title}</h3>
         <h5>{startDate}</h5>
         <h5>{parkName}</h5>
