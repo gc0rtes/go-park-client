@@ -10,6 +10,7 @@ import { Switch, Route } from "react-router-dom";
 import MessageBox from "./components/MessageBox";
 
 //Load Pages
+import Navbar from "./components/Navigation";
 import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
 import Events from "./pages/Events";
@@ -32,6 +33,7 @@ function App() {
     <div className="App">
       <MessageBox />
       {isLoading ? "Loading App" : null}
+      <Navbar />
       <Switch>
         <Route exact path="/" component={Events} />
         <Route path="/login" component={Login} />
