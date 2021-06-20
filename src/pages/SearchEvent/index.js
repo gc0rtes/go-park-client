@@ -19,8 +19,6 @@ export default function SearchEvent() {
   // const history = useHistory();
   // const params = useParams();
 
-  console.log("what is events", events);
-
   //once we submit the form, the searchText is stored in the url
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -38,13 +36,15 @@ export default function SearchEvent() {
         event.description.toLowerCase().includes(searchText) ||
         event.tag.toLowerCase().includes(searchText)
     );
+    // console.log("whats is filtredArray", filtredArray);
     setResults(filtredArray);
   }, [searchText]);
 
   //checking if array results is not null, if so we map over the results
   //else we map over the original data
-
-  const toMap = results.length > 0 ? results : events;
+  // console.log("what is results", results);
+  // console.log("what is events", events);
+  // const toMap = results.length > 0 ? results : events;
 
   return (
     <div>
@@ -59,17 +59,44 @@ export default function SearchEvent() {
           }}
         />
       </form>
+      <button value="" onClick={(e) => setSearchText(e.target.value)}>
+        All
+      </button>
+      <button value="music" onClick={(e) => setSearchText(e.target.value)}>
+        Music
+      </button>
+      <button value="sport" onClick={(e) => setSearchText(e.target.value)}>
+        Sport
+      </button>
+      <button value="meetup" onClick={(e) => setSearchText(e.target.value)}>
+        Meetup
+      </button>
+      <button value="dance" onClick={(e) => setSearchText(e.target.value)}>
+        Dance
+      </button>
+      <button value="artMartial" onClick={(e) => setSearchText(e.target.value)}>
+        Martial Arts
+      </button>
+      <button value="fitness" onClick={(e) => setSearchText(e.target.value)}>
+        Fitness
+      </button>
+      <button value="game" onClick={(e) => setSearchText(e.target.value)}>
+        Game
+      </button>
+      <button value="education" onClick={(e) => setSearchText(e.target.value)}>
+        Education
+      </button>
       <p>
         {/* showing the amount of search results with 3 different cases:
       no results, 1 result, more than 1 */}
-        {toMap.length < 1
+        {results.length < 1
           ? "Sorry, nothing matches your search"
-          : toMap.length === 1
-          ? `${toMap.length} result`
-          : `${toMap.length} results`}
+          : results.length === 1
+          ? `${results.length} result`
+          : `${results.length} results`}
       </p>
       <div>
-        {toMap.map((event) => {
+        {results.map((event) => {
           return (
             <EventCard
               key={event.id}
