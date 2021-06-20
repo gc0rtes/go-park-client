@@ -19,10 +19,15 @@ export default function PostEvent() {
   const [endDate, setEndDate] = useState("");
   const [startHour, setStartHour] = useState("");
   const [parkId, setParkId] = useState();
-  const [tagId, setTagId] = useState("");
+  const [tag, setTag] = useState("");
   // TODO: lat and lng is to User set the EVENT location on leaflet map
   // const [lat, setLat] = useState(0);
   // const [lng, setLng] = useState(0);
+
+  // TODO: Get user Event location coordenates from LEAFLET MAP
+  // For now just hard coding the Event location coordenates
+  const lat = 52.055858;
+  const lng = 4.285709;
 
   //mapCenterPark is to show the map center location on leaflet
   //It'll switch according parkId selected
@@ -31,14 +36,8 @@ export default function PostEvent() {
   const mapCenterPark3 = [52.394852, 4.919604];
   const mapCenterPark4 = [52.386702, 4.876364];
 
-  // TODO: Get user Event location coordenates from LEAFLET MAP
-  // For now just hard coding the Event location coordenates
-  const lat = 52.055858;
-  const lng = 4.285709;
-
-  // const userId = user.id;
-
   //Set of information to post a Event
+  /**
   console.log(imageUrl);
   console.log(title);
   console.log(description);
@@ -48,11 +47,10 @@ export default function PostEvent() {
   console.log("what is startHour", startHour, typeof startHour); //string
   console.log("what is lat", lat);
   console.log("what is lng", lng);
+  console.log("what is tag", tag);
   console.log("what is parkId", parkId, typeof parkId); //REMEMBER to parseInt before dispatch
-  // REMEBER: Is not necessary to send userId on body. Router get it from authMiddleware
-
-  //TODO: Create an action to update the table tagEvents
-  console.log("what is tagId", tagId); //REMEMBER to parseInt before dispatch
+  // REMEBER: userId not necessary to send  on body. Router get it from authMiddleware
+   */
 
   function submitForm(e) {
     e.preventDefault();
@@ -67,6 +65,7 @@ export default function PostEvent() {
         startHour,
         lat,
         lng,
+        tag,
         parkId
       )
     );
@@ -87,6 +86,7 @@ export default function PostEvent() {
             value={imageUrl}
             placeholder="Event image url"
             onChange={(e) => setImageUrl(e.target.value)}
+            required
           />
         </label>
       </p>
@@ -135,10 +135,10 @@ export default function PostEvent() {
           {" "}
           Music:{" "}
           <input
-            value={"1"}
+            value={"Music"}
             type="radio"
             name={"category"}
-            onChange={(e) => setTagId(e.target.value)}
+            onChange={(e) => setTag(e.target.value)}
           />
         </label>
       </p>
@@ -147,10 +147,10 @@ export default function PostEvent() {
           {" "}
           Sport:{" "}
           <input
-            value={"2"}
+            value={"Sport"}
             type="radio"
             name={"category"}
-            onChange={(e) => setTagId(e.target.value)}
+            onChange={(e) => setTag(e.target.value)}
           />
         </label>
       </p>
@@ -159,10 +159,10 @@ export default function PostEvent() {
           {" "}
           MeetUp:{" "}
           <input
-            value={"3"}
+            value={"Meetup"}
             type="radio"
             name={"category"}
-            onChange={(e) => setTagId(e.target.value)}
+            onChange={(e) => setTag(e.target.value)}
           />
         </label>
       </p>
@@ -171,10 +171,10 @@ export default function PostEvent() {
           {" "}
           Dance:{" "}
           <input
-            value={"4"}
+            value={"Dance"}
             type="radio"
             name={"category"}
-            onChange={(e) => setTagId(e.target.value)}
+            onChange={(e) => setTag(e.target.value)}
           />
         </label>
       </p>
@@ -183,10 +183,10 @@ export default function PostEvent() {
           {" "}
           Art Martial:{" "}
           <input
-            value={"5"}
+            value={"Art Martial"}
             type="radio"
             name={"category"}
-            onChange={(e) => setTagId(e.target.value)}
+            onChange={(e) => setTag(e.target.value)}
           />
         </label>
       </p>
@@ -195,10 +195,10 @@ export default function PostEvent() {
           {" "}
           Fitness:{" "}
           <input
-            value={"6"}
+            value={"Fitness"}
             type="radio"
             name={"category"}
-            onChange={(e) => setTagId(e.target.value)}
+            onChange={(e) => setTag(e.target.value)}
           />
         </label>
       </p>
@@ -207,10 +207,10 @@ export default function PostEvent() {
           {" "}
           Game:{" "}
           <input
-            value={"7"}
+            value={"Game"}
             type="radio"
             name={"category"}
-            onChange={(e) => setTagId(e.target.value)}
+            onChange={(e) => setTag(e.target.value)}
           />
         </label>
       </p>
@@ -219,10 +219,10 @@ export default function PostEvent() {
           {" "}
           Education:{" "}
           <input
-            value={"8"}
+            value={"Education"}
             type="radio"
             name={"category"}
-            onChange={(e) => setTagId(e.target.value)}
+            onChange={(e) => setTag(e.target.value)}
           />
         </label>
       </p>
@@ -272,7 +272,8 @@ export default function PostEvent() {
           name="startHour"
         ></input>
       </p>
-      {/* TODO: INSERT MAP ACCORDING CHOSE PARK  AND LET THE USER INSERT A LOCATION*/}
+      {/* TODO: INSERT MAP ACCORDING CHOSE PARK  AND LET THE USER INSERT A LOCATION and 
+      update the setState for 'lat' and 'lng'*/}
       <p>
         <button type="submit" onClick={submitForm}>
           {" "}

@@ -37,6 +37,7 @@ export const postEvent = (
   startHour,
   lat,
   lng,
+  tag,
   parkId
 ) => {
   return async (dispatch, getState) => {
@@ -55,6 +56,7 @@ export const postEvent = (
           startHour,
           lat,
           lng,
+          tag,
           parkId,
         },
         {
