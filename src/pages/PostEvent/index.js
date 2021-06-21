@@ -135,7 +135,7 @@ export default function PostEvent() {
           {" "}
           Music:{" "}
           <input
-            value={"Music"}
+            value={"music"}
             type="radio"
             name={"category"}
             onChange={(e) => setTag(e.target.value)}
@@ -147,7 +147,7 @@ export default function PostEvent() {
           {" "}
           Sport:{" "}
           <input
-            value={"Sport"}
+            value={"sport"}
             type="radio"
             name={"category"}
             onChange={(e) => setTag(e.target.value)}
@@ -159,7 +159,7 @@ export default function PostEvent() {
           {" "}
           MeetUp:{" "}
           <input
-            value={"Meetup"}
+            value={"meetup"}
             type="radio"
             name={"category"}
             onChange={(e) => setTag(e.target.value)}
@@ -171,7 +171,7 @@ export default function PostEvent() {
           {" "}
           Dance:{" "}
           <input
-            value={"Dance"}
+            value={"dance"}
             type="radio"
             name={"category"}
             onChange={(e) => setTag(e.target.value)}
@@ -183,7 +183,7 @@ export default function PostEvent() {
           {" "}
           Art Martial:{" "}
           <input
-            value={"Art Martial"}
+            value={"martialart"}
             type="radio"
             name={"category"}
             onChange={(e) => setTag(e.target.value)}
@@ -195,7 +195,7 @@ export default function PostEvent() {
           {" "}
           Fitness:{" "}
           <input
-            value={"Fitness"}
+            value={"fitness"}
             type="radio"
             name={"category"}
             onChange={(e) => setTag(e.target.value)}
@@ -207,7 +207,7 @@ export default function PostEvent() {
           {" "}
           Game:{" "}
           <input
-            value={"Game"}
+            value={"game"}
             type="radio"
             name={"category"}
             onChange={(e) => setTag(e.target.value)}
@@ -219,7 +219,7 @@ export default function PostEvent() {
           {" "}
           Education:{" "}
           <input
-            value={"Education"}
+            value={"education"}
             type="radio"
             name={"category"}
             onChange={(e) => setTag(e.target.value)}

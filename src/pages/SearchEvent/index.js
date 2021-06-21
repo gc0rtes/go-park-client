@@ -19,7 +19,7 @@ export default function SearchEvent() {
   // const history = useHistory();
   // const params = useParams();
 
-  //once we submit the form, the searchText is stored in the url
+  //once we submit the form, the searchText is stored useState
   const handleSubmit = (event) => {
     event.preventDefault();
     setSearchText(searchText);
@@ -74,7 +74,7 @@ export default function SearchEvent() {
       <button value="dance" onClick={(e) => setSearchText(e.target.value)}>
         Dance
       </button>
-      <button value="artMartial" onClick={(e) => setSearchText(e.target.value)}>
+      <button value="martialart" onClick={(e) => setSearchText(e.target.value)}>
         Martial Arts
       </button>
       <button value="fitness" onClick={(e) => setSearchText(e.target.value)}>
