@@ -59,7 +59,13 @@ export default function ArtDetail() {
       <h5>Name: {event.owner.name}</h5>
       {event.phone ? <h5>Phone: {event.phone}</h5> : null}
       <hr />
-      <Leaflet eventLat={event.park.lat} eventLng={event.park.lng} />
+      <Leaflet
+        eventLat={event.lat}
+        eventLng={event.lng}
+        parkLat={event.park.lat}
+        parkLng={event.park.lng}
+        allowClick={false}
+      />
 
       {/* TODO: button to show comments here */}
       {/* TODO: Make a Component form to Post a new comment */}
