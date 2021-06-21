@@ -59,7 +59,8 @@ export default function ArtDetail() {
       <h5>Name: {event.owner.name}</h5>
       {event.phone ? <h5>Phone: {event.phone}</h5> : null}
       <hr />
-      <Leaflet />
+      <Leaflet eventLat={event.park.lat} eventLng={event.park.lng} />
+
       {/* TODO: INSERT MAP with event location HERE! */}
       {/* TODO: button to show comments here */}
       {/* TODO: Make a Component form to Post a new comment */}

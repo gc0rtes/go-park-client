@@ -1,15 +1,17 @@
-import React, { useState } from "react";
+import React from "react";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import L from "leaflet";
 
 import "leaflet/dist/leaflet.css";
 import redIcon from "../../resources/images/marker.png";
 
-export default function MyMap() {
-  const [center, setCenter] = useState({ lat: 52.05579, lng: 4.28593 }); //zuiderpark picked from google
+export default function MyMap({ eventLat, eventLng }) {
+  const center = { lat: eventLat, lng: eventLng }; //zuiderpark picked from google
+  console.log("what is center", center);
+
   const ZOOM_LEVEL = 15;
 
-  const myMarkerPosition = [52.05579, 4.28593];
+  const myMarkerPosition = [eventLat, eventLng];
 
   const myIcon = L.icon({
     iconUrl: redIcon,
@@ -33,10 +35,7 @@ export default function MyMap() {
         />
 
         <Marker position={myMarkerPosition} icon={myIcon}>
-          <Popup>
-            ZuiderPark, Den Haag. <br /> Look at event description the exact
-            location.
-          </Popup>
+          <Popup>Look at event description to know the exact location.</Popup>
         </Marker>
       </MapContainer>
     </div>
