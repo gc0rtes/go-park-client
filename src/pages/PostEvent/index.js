@@ -31,10 +31,10 @@ export default function PostEvent() {
 
   //mapCenterPark is to show the map center location on leaflet
   //It'll switch according parkId selected
-  const mapCenterPark1 = [52.055858, 4.285709];
-  const mapCenterPark2 = [52.105771, 4.290591];
-  const mapCenterPark3 = [52.394852, 4.919604];
-  const mapCenterPark4 = [52.386702, 4.876364];
+  // const mapCenterPark1 = [52.055858, 4.285709];
+  // const mapCenterPark2 = [52.105771, 4.290591];
+  // const mapCenterPark3 = [52.394852, 4.919604];
+  // const mapCenterPark4 = [52.386702, 4.876364];
 
   //Set of information to post a Event
   /**
