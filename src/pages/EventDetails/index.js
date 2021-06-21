@@ -61,7 +61,6 @@ export default function ArtDetail() {
       <hr />
       <Leaflet eventLat={event.park.lat} eventLng={event.park.lng} />
 
-      {/* TODO: INSERT MAP with event location HERE! */}
       {/* TODO: button to show comments here */}
       {/* TODO: Make a Component form to Post a new comment */}
     </div>

@@ -7,7 +7,7 @@ import redIcon from "../../resources/images/marker.png";
 
 export default function MyMap({ eventLat, eventLng }) {
   const center = { lat: eventLat, lng: eventLng }; //zuiderpark picked from google
-  console.log("what is center", center);
+  // console.log("what is center", center);
 
   const ZOOM_LEVEL = 15;
 
@@ -35,7 +35,9 @@ export default function MyMap({ eventLat, eventLng }) {
         />
 
         <Marker position={myMarkerPosition} icon={myIcon}>
-          <Popup>Look at event description to know the exact location.</Popup>
+          <Popup>
+            Look on the event description to know the exact location.
+          </Popup>
         </Marker>
       </MapContainer>
     </div>

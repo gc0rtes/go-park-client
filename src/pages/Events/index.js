@@ -8,6 +8,18 @@ import EventCard from "../../components/EventCard";
 import { fetchEvents } from "../../store/events/actions";
 import { selectAllEvents } from "../../store/events/selectors";
 
+const tags = [
+  "All",
+  "music",
+  "sport",
+  "meetup",
+  "dance",
+  "martialart",
+  "fitness",
+  "game",
+  "education",
+];
+
 export default function Events() {
   const dispatch = useDispatch();
   const allEvents = useSelector(selectAllEvents);
@@ -18,88 +30,78 @@ export default function Events() {
     dispatch(fetchEvents());
   }, [dispatch]);
 
-  let filtredArray;
-  switch (searchTag) {
-    case "music":
-      filtredArray = allEvents.filter((props) =>
-        props.tag.toLowerCase().includes(searchTag)
-      );
-      break;
-    case "sport":
-      filtredArray = allEvents.filter((props) =>
-        props.tag.toLowerCase().includes(searchTag)
-      );
-      break;
-    case "meetup":
-      filtredArray = allEvents.filter((props) =>
-        props.tag.toLowerCase().includes(searchTag)
-      );
-      break;
-    case "dance":
-      filtredArray = allEvents.filter((props) =>
-        props.tag.toLowerCase().includes(searchTag)
-      );
-      break;
-    case "martialart":
-      filtredArray = allEvents.filter((props) =>
-        props.tag.toLowerCase().includes(searchTag)
-      );
-      break;
-    case "fitness":
-      filtredArray = allEvents.filter((props) =>
-        props.tag.toLowerCase().includes(searchTag)
-      );
-      break;
-    case "game":
-      filtredArray = allEvents.filter((props) =>
-        props.tag.toLowerCase().includes(searchTag)
-      );
-      break;
-    case "education":
-      filtredArray = allEvents.filter((props) =>
-        props.tag.toLowerCase().includes(searchTag)
-      );
-      break;
-    default:
-      filtredArray = allEvents;
-      break;
-  }
+  // let filtredArray;
+  // switch (searchTag) {
+  //   case "music":
+  //     filtredArray = allEvents.filter((props) =>
+  //       props.tag.toLowerCase().includes(searchTag)
+  //     );
+  //     break;
+  //   case "sport":
+  //     filtredArray = allEvents.filter((props) =>
+  //       props.tag.toLowerCase().includes(searchTag)
+  //     );
+  //     break;
+  //   case "meetup":
+  //     filtredArray = allEvents.filter((props) =>
+  //       props.tag.toLowerCase().includes(searchTag)
+  //     );
+  //     break;
+  //   case "dance":
+  //     filtredArray = allEvents.filter((props) =>
+  //       props.tag.toLowerCase().includes(searchTag)
+  //     );
+  //     break;
+  //   case "martialart":
+  //     filtredArray = allEvents.filter((props) =>
+  //       props.tag.toLowerCase().includes(searchTag)
+  //     );
+  //     break;
+  //   case "fitness":
+  //     filtredArray = allEvents.filter((props) =>
+  //       props.tag.toLowerCase().includes(searchTag)
+  //     );
+  //     break;
+  //   case "game":
+  //     filtredArray = allEvents.filter((props) =>
+  //       props.tag.toLowerCase().includes(searchTag)
+  //     );
+  //     break;
+  //   case "education":
+  //     filtredArray = allEvents.filter((props) =>
+  //       props.tag.toLowerCase().includes(searchTag)
+  //     );
+  //     break;
+  //   default:
+  //     filtredArray = allEvents;
+  //     break;
+  // }
 
-  console.log("what is searchTag", searchTag);
-  console.log("what is allEvents", allEvents);
+  const filtredArray = allEvents.filter((props) =>
+    props.tag.toLowerCase().includes(searchTag)
+  );
   console.log("what is filtredArray", filtredArray);
+
+  // console.log("what is searchTag", searchTag);
+  // console.log("what is allEvents", allEvents);
+  // console.log("what is filtredArray", filtredArray);
 
   const toMap = filtredArray.length > 0 ? filtredArray : allEvents;
   return (
     <div>
       <h3>What's up ?</h3>
-      <button value="" onClick={(e) => setSearchTag(e.target.value)}>
-        All
-      </button>
-      <button value="music" onClick={(e) => setSearchTag(e.target.value)}>
-        Music
-      </button>
-      <button value="sport" onClick={(e) => setSearchTag(e.target.value)}>
-        Sport
-      </button>
-      <button value="meetup" onClick={(e) => setSearchTag(e.target.value)}>
-        Meetup
-      </button>
-      <button value="dance" onClick={(e) => setSearchTag(e.target.value)}>
-        Dance
-      </button>
-      <button value="martialart" onClick={(e) => setSearchTag(e.target.value)}>
-        Martial Arts
-      </button>
-      <button value="fitness" onClick={(e) => setSearchTag(e.target.value)}>
-        Fitness
-      </button>
-      <button value="game" onClick={(e) => setSearchTag(e.target.value)}>
-        Game
-      </button>
-      <button value="education" onClick={(e) => setSearchTag(e.target.value)}>
-        Education
-      </button>
+      {tags.map((tag, index) => {
+        return (
+          <button
+            key={index}
+            value={tag}
+            onClick={(e) => setSearchTag(e.target.value)}
+          >
+            {tag}
+          </button>
+        );
+      })}
+
       <p>
         {filtredArray.length > 0
           ? null
