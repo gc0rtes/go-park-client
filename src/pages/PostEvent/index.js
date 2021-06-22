@@ -1,10 +1,14 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { selectToken } from "../../store/user/selectors";
 import { postEvent } from "../../store/eventDetails/actions";
 import { fetchEvents } from "../../store/events/actions";
 // import { selectEventDetails } from "../../store/eventDetails/selectors";
+
+import { selectMarkPosition } from "../../store/eventMarkPosition/selectors";
+
+import Leaflet from "../../components/Leaflet";
 
 //CheckBox management reference: https://www.pluralsight.com/guides/handling-multiple-inputs-with-single-onchange-handler-react
 
@@ -22,6 +26,8 @@ const tags = [
 export default function PostEvent() {
   const token = useSelector(selectToken);
   const history = useHistory();
+  const eventPosition = useSelector(selectMarkPosition);
+
   // const eventDetails = useSelector(selectEventDetails);
   // if (eventDetails) {
   //   const eventDetailId = eventDetails.event.id;
@@ -39,21 +45,48 @@ export default function PostEvent() {
   const [startHour, setStartHour] = useState("");
   const [parkId, setParkId] = useState();
   const [tag, setTag] = useState("");
+  const [latCenterPark, setLatCenterPark] = useState("");
+  const [lngCenterPark, setLngCenterPark] = useState("");
+
   // TODO: lat and lng is to User set the EVENT location on leaflet map
   // const [lat, setLat] = useState(0);
   // const [lng, setLng] = useState(0);
 
   // TODO: Get user Event location coordenates from LEAFLET MAP
   // For now just hard coding the Event location coordenates
-  const lat = 52.055858;
-  const lng = 4.285709;
+  const latPinEventPlaceHolder = 52.055858;
+  const lngPinEventPlaceHolder = 4.285709;
 
-  //mapCenterPark is to show the map center location on leaflet
-  //It'll switch according parkId selected
-  // const mapCenterPark1 = [52.055858, 4.285709];
-  // const mapCenterPark2 = [52.105771, 4.290591];
-  // const mapCenterPark3 = [52.394852, 4.919604];
-  // const mapCenterPark4 = [52.386702, 4.876364];
+  const lat = eventPosition.lat;
+  const lng = eventPosition.lng;
+  console.log("what is lat?", lat);
+  console.log("what is lng?", lng);
+
+  //passing the center of map coordinates to the leaflet component
+  const selectPark = () => {
+    console.log("selectPark trigger");
+    if (parkId === 1) {
+      setLatCenterPark(52.055858);
+      setLngCenterPark(4.285709);
+    } else if (parkId === 2) {
+      setLatCenterPark(52.105771);
+      setLngCenterPark(4.290591);
+    } else if (parkId === 3) {
+      setLatCenterPark(52.394852);
+      setLngCenterPark(4.919604);
+    } else if (parkId === 4) {
+      setLatCenterPark(52.386702);
+      setLngCenterPark(4.876364);
+    }
+  };
+
+  //monitoring the parkId. If the state changes call the selectPark function
+  useEffect(() => {
+    selectPark();
+  }, [parkId]);
+
+  console.log("what is latCenterPark", latCenterPark);
+  console.log("what is lngCenterPark", lngCenterPark);
 
   //Set of information to post a Event
   /**
@@ -64,13 +97,14 @@ export default function PostEvent() {
   console.log("what is startDate", startDate, typeof startDate); //string
   console.log("what is endDate", endDate, typeof endDate); //string
   console.log("what is startHour", startHour, typeof startHour); //string
+  console.log("what is tag", tag);
   console.log("what is lat", lat);
   console.log("what is lng", lng);
   console.log("what is tag", tag);
   console.log("what is parkId", parkId, typeof parkId); //REMEMBER to parseInt before dispatch
   // REMEBER: userId not necessary to send  on body. Router get it from authMiddleware
    */
-  console.log("what is tag", tag);
+
   function submitForm(e) {
     e.preventDefault();
     dispatch(
@@ -217,6 +251,19 @@ export default function PostEvent() {
       </p>
       {/* TODO: INSERT MAP ACCORDING CHOSE PARK  AND LET THE USER INSERT A LOCATION and 
       update the setState for 'lat' and 'lng'*/}
+      <div>
+        {latCenterPark ? (
+          <Leaflet
+            eventLat={latPinEventPlaceHolder}
+            eventLng={lngPinEventPlaceHolder}
+            parkLat={latCenterPark}
+            parkLng={lngCenterPark}
+            allowClick={true}
+          />
+        ) : (
+          ""
+        )}
+      </div>
       <p>
         <button type="submit" onClick={submitForm}>
           {" "}
