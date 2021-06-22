@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 // import { useHistory, useParams } from "react-router-dom";
 
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 
 import moment from "moment";
 
@@ -10,6 +10,7 @@ import EventCard from "../../components/EventCard";
 
 //Actions and Selectors
 import { selectAllEvents } from "../../store/events/selectors";
+import { fetchEvents } from "../../store/events/actions";
 
 const tags = [
   "All",
@@ -27,11 +28,16 @@ const parkName = ["Zuiderpark", "Westbroekpark", "Noorderpark", "Westerpark"];
 const cityName = ["The Hague", "Amsterdam"];
 
 export default function SearchEvent() {
+  const dispatch = useDispatch();
   const allEvents = useSelector(selectAllEvents);
 
-  const [events] = useState(allEvents);
+  // const [events] = useState(allEvents);
   const [searchText, setSearchText] = useState("");
   const [results, setResults] = useState([]);
+
+  useEffect(() => {
+    dispatch(fetchEvents());
+  }, [dispatch]);
 
   // const history = useHistory();
   // const params = useParams();
@@ -47,7 +53,7 @@ export default function SearchEvent() {
   useEffect(() => {
     // Filtering the array 'events' to check if it contains the search term.
     // The filter() method creates a new array with all elements that pass the test implemented by the provided function.
-    const filtredArray = events.filter(
+    const filtredArray = allEvents.filter(
       (event) =>
         event.title.toLowerCase().includes(searchText) ||
         event.description.toLowerCase().includes(searchText) ||
@@ -57,7 +63,7 @@ export default function SearchEvent() {
     );
     // console.log("whats is filtredArray", filtredArray);
     setResults(filtredArray);
-  }, [searchText]);
+  }, [searchText, allEvents]);
 
   //checking if array results is not null, if so we map over the results
   //else we map over the original data
