@@ -6,6 +6,7 @@ export default function Artwork({
   imageUrl,
   title,
   startDate,
+  startHour,
   parkName,
   cityName,
 }) {
@@ -15,6 +16,7 @@ export default function Artwork({
         <img src={imageUrl} alt={title} />
         <h3>{title}</h3>
         <h5>{startDate}</h5>
+        <h5>{startHour}</h5>
         <h5>{parkName}</h5>
         <h5>{cityName}</h5>
         <Link to={`/event/${id}`}>Details</Link>

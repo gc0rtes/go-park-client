@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-
+import { useHistory } from "react-router-dom";
 import { selectToken } from "../../store/user/selectors";
 import { postEvent } from "../../store/eventDetails/actions";
+import { fetchEvents } from "../../store/events/actions";
+// import { selectEventDetails } from "../../store/eventDetails/selectors";
 
 //CheckBox management reference: https://www.pluralsight.com/guides/handling-multiple-inputs-with-single-onchange-handler-react
 
@@ -19,6 +21,12 @@ const tags = [
 
 export default function PostEvent() {
   const token = useSelector(selectToken);
+  const history = useHistory();
+  // const eventDetails = useSelector(selectEventDetails);
+  // if (eventDetails) {
+  //   const eventDetailId = eventDetails.event.id;
+  //   console.log("what is eventDetailId", eventDetailId);
+  // }
 
   const dispatch = useDispatch();
 
@@ -80,6 +88,8 @@ export default function PostEvent() {
         parkId
       )
     );
+    dispatch(fetchEvents);
+    history.push("/");
   }
 
   if (!token) {

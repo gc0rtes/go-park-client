@@ -8,6 +8,8 @@ import EventCard from "../../components/EventCard";
 import { fetchEvents } from "../../store/events/actions";
 import { selectAllEvents } from "../../store/events/selectors";
 
+import moment from "moment";
+
 const tags = [
   "All",
   "Music",
@@ -67,7 +69,8 @@ export default function Events() {
             id={event.id}
             imageUrl={event.imageUrl}
             title={event.title}
-            startDate={event.startDate}
+            startDate={moment(event.startDate).format("ll")}
+            startHour={event.startHour}
             parkName={event.park.name}
             cityName={event.park.city.name}
           />
