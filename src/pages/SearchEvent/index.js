@@ -3,11 +3,28 @@ import React, { useState, useEffect } from "react";
 
 import { useSelector } from "react-redux";
 
+import moment from "moment";
+
 //EventCard component
 import EventCard from "../../components/EventCard";
 
 //Actions and Selectors
 import { selectAllEvents } from "../../store/events/selectors";
+
+const tags = [
+  "All",
+  "Music",
+  "Sport",
+  "Meetup",
+  "Dance",
+  "MartialArt",
+  "Fitness",
+  "Game",
+  "Education",
+];
+
+const parkName = ["Zuiderpark", "Westbroekpark", "Noorderpark", "Westerpark"];
+const cityName = ["The Hague", "Amsterdam"];
 
 export default function SearchEvent() {
   const allEvents = useSelector(selectAllEvents);
@@ -34,7 +51,9 @@ export default function SearchEvent() {
       (event) =>
         event.title.toLowerCase().includes(searchText) ||
         event.description.toLowerCase().includes(searchText) ||
-        event.tag.toLowerCase().includes(searchText)
+        event.tag.toLowerCase().includes(searchText) ||
+        event.park.name.toLowerCase().includes(searchText) ||
+        event.park.city.name.toLowerCase().includes(searchText)
     );
     // console.log("whats is filtredArray", filtredArray);
     setResults(filtredArray);
@@ -45,6 +64,38 @@ export default function SearchEvent() {
   // console.log("what is results", results);
   // console.log("what is events", events);
   // const toMap = results.length > 0 ? results : events;
+
+  const myMoment = moment();
+  // console.log("what is today", myMoment);
+
+  // const tomorrow = moment().add(1, "days").toDate();
+  const tomorrow = myMoment.add(1, "days");
+  // console.log("what is tomorrow?", tomorrow);
+
+  const formatTomorrow = tomorrow.format("YYYY-MM-DD");
+  console.log("what is formatTomorrow?", formatTomorrow);
+
+  const formatToday = moment().format("YYYY-MM-DD");
+  console.log("what is formatToday?", formatToday);
+
+  // const startDateEvent = allEvents[1]?.startDate;
+  // console.log("what is startDateEvent", startDateEvent);
+
+  // const todayEvents = moment(startDateEvent).isSame(formatToday);
+  // console.log("what is todayEvents", todayEvents);
+
+  // const tomorrowEvents = moment(startDateEvent).isSame(formatTomorrow);
+  // console.log("what is tomorrowEvents", tomorrowEvents);
+
+  const filterToday = allEvents?.filter((event) =>
+    moment(event.startDate).isSame(formatToday)
+  );
+  console.log("what is filterToday", filterToday);
+
+  const filterTomorrow = allEvents?.filter((event) =>
+    moment(event.startDate).isSame(formatTomorrow)
+  );
+  console.log("what is filterTomorrow", filterTomorrow);
 
   return (
     <div>
@@ -59,33 +110,52 @@ export default function SearchEvent() {
           }}
         />
       </form>
-      <button value="" onClick={(e) => setSearchText(e.target.value)}>
-        All
-      </button>
-      <button value="music" onClick={(e) => setSearchText(e.target.value)}>
-        Music
-      </button>
-      <button value="sport" onClick={(e) => setSearchText(e.target.value)}>
-        Sport
-      </button>
-      <button value="meetup" onClick={(e) => setSearchText(e.target.value)}>
-        Meetup
-      </button>
-      <button value="dance" onClick={(e) => setSearchText(e.target.value)}>
-        Dance
-      </button>
-      <button value="martialart" onClick={(e) => setSearchText(e.target.value)}>
-        Martial Arts
-      </button>
-      <button value="fitness" onClick={(e) => setSearchText(e.target.value)}>
-        Fitness
-      </button>
-      <button value="game" onClick={(e) => setSearchText(e.target.value)}>
-        Game
-      </button>
-      <button value="education" onClick={(e) => setSearchText(e.target.value)}>
-        Education
-      </button>
+
+      {tags.map((tag, index) => {
+        return (
+          <button
+            key={index}
+            value={tag.toLowerCase()}
+            onClick={(e) => setSearchText(e.target.value)}
+          >
+            {tag}
+          </button>
+        );
+      })}
+      <br />
+
+      <select
+        name="city"
+        value={""}
+        onChange={(e) => setSearchText(e.target.value)}
+      >
+        <option defaultValue> Select a City:</option>
+        {cityName.map((name, index) => {
+          return (
+            <option key={index} value={name.toLowerCase()}>
+              {name}
+            </option>
+          );
+        })}
+      </select>
+
+      <select
+        name="park"
+        value={""}
+        onChange={(e) => setSearchText(e.target.value)}
+      >
+        <option defaultValue>Select a Park:</option>
+        {parkName.map((name, index) => {
+          return (
+            <option key={index} value={name.toLowerCase()}>
+              {name}
+            </option>
+          );
+        })}
+      </select>
+      <br />
+      <button onClick={() => setResults(filterToday)}>Today</button>
+      <button onClick={() => setResults(filterTomorrow)}>Tomorrow</button>
       <p>
         {/* showing the amount of search results with 3 different cases:
       no results, 1 result, more than 1 */}

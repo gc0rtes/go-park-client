@@ -8,16 +8,18 @@ import EventCard from "../../components/EventCard";
 import { fetchEvents } from "../../store/events/actions";
 import { selectAllEvents } from "../../store/events/selectors";
 
+import moment from "moment";
+
 const tags = [
   "All",
-  "music",
-  "sport",
-  "meetup",
-  "dance",
-  "martialart",
-  "fitness",
-  "game",
-  "education",
+  "Music",
+  "Sport",
+  "Meetup",
+  "Dance",
+  "MartialArt",
+  "Fitness",
+  "Game",
+  "Education",
 ];
 
 export default function Events() {
@@ -29,53 +31,6 @@ export default function Events() {
   useEffect(() => {
     dispatch(fetchEvents());
   }, [dispatch]);
-
-  // let filtredArray;
-  // switch (searchTag) {
-  //   case "music":
-  //     filtredArray = allEvents.filter((props) =>
-  //       props.tag.toLowerCase().includes(searchTag)
-  //     );
-  //     break;
-  //   case "sport":
-  //     filtredArray = allEvents.filter((props) =>
-  //       props.tag.toLowerCase().includes(searchTag)
-  //     );
-  //     break;
-  //   case "meetup":
-  //     filtredArray = allEvents.filter((props) =>
-  //       props.tag.toLowerCase().includes(searchTag)
-  //     );
-  //     break;
-  //   case "dance":
-  //     filtredArray = allEvents.filter((props) =>
-  //       props.tag.toLowerCase().includes(searchTag)
-  //     );
-  //     break;
-  //   case "martialart":
-  //     filtredArray = allEvents.filter((props) =>
-  //       props.tag.toLowerCase().includes(searchTag)
-  //     );
-  //     break;
-  //   case "fitness":
-  //     filtredArray = allEvents.filter((props) =>
-  //       props.tag.toLowerCase().includes(searchTag)
-  //     );
-  //     break;
-  //   case "game":
-  //     filtredArray = allEvents.filter((props) =>
-  //       props.tag.toLowerCase().includes(searchTag)
-  //     );
-  //     break;
-  //   case "education":
-  //     filtredArray = allEvents.filter((props) =>
-  //       props.tag.toLowerCase().includes(searchTag)
-  //     );
-  //     break;
-  //   default:
-  //     filtredArray = allEvents;
-  //     break;
-  // }
 
   const filtredArray = allEvents.filter((props) =>
     props.tag.toLowerCase().includes(searchTag)
@@ -94,7 +49,7 @@ export default function Events() {
         return (
           <button
             key={index}
-            value={tag}
+            value={tag.toLowerCase()}
             onClick={(e) => setSearchTag(e.target.value)}
           >
             {tag}
@@ -114,7 +69,8 @@ export default function Events() {
             id={event.id}
             imageUrl={event.imageUrl}
             title={event.title}
-            startDate={event.startDate}
+            startDate={moment(event.startDate).format("ll")}
+            startHour={event.startHour}
             parkName={event.park.name}
             cityName={event.park.city.name}
           />
