@@ -122,7 +122,7 @@ export default function PostEvent() {
         parkId
       )
     );
-    dispatch(fetchEvents);
+    dispatch(fetchEvents());
     history.push("/");
   }
 
