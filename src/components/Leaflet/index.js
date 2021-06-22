@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useDispatch } from "react-redux";
 import {
   MapContainer,
   useMapEvents,
@@ -11,6 +12,9 @@ import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 import redIcon from "../../resources/images/marker.png";
 
+//Actions and Selectors
+import { eventMarkerPosition } from "../../store/eventMarkPosition/actions";
+
 export default function MyMap({
   eventLat,
   eventLng,
@@ -18,6 +22,7 @@ export default function MyMap({
   parkLng,
   allowClick,
 }) {
+  const dispatch = useDispatch();
   const center = { lat: parkLat, lng: parkLng }; //zuiderpark picked from google
   const [markerPosition, setMarkerPosition] = useState({
     lat: eventLat,
@@ -47,6 +52,7 @@ export default function MyMap({
           lat: y,
           lng: x,
         });
+        dispatch(eventMarkerPosition(y, x));
       },
     });
     return null;

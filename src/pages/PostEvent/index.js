@@ -6,6 +6,8 @@ import { postEvent } from "../../store/eventDetails/actions";
 import { fetchEvents } from "../../store/events/actions";
 // import { selectEventDetails } from "../../store/eventDetails/selectors";
 
+import { selectMarkPosition } from "../../store/eventMarkPosition/selectors";
+
 import Leaflet from "../../components/Leaflet";
 
 //CheckBox management reference: https://www.pluralsight.com/guides/handling-multiple-inputs-with-single-onchange-handler-react
@@ -24,6 +26,8 @@ const tags = [
 export default function PostEvent() {
   const token = useSelector(selectToken);
   const history = useHistory();
+  const eventPosition = useSelector(selectMarkPosition);
+
   // const eventDetails = useSelector(selectEventDetails);
   // if (eventDetails) {
   //   const eventDetailId = eventDetails.event.id;
@@ -50,8 +54,13 @@ export default function PostEvent() {
 
   // TODO: Get user Event location coordenates from LEAFLET MAP
   // For now just hard coding the Event location coordenates
-  const latPinEvent = 52.055858;
-  const lngPinEvent = 4.285709;
+  const latPinEventPlaceHolder = 52.055858;
+  const lngPinEventPlaceHolder = 4.285709;
+
+  const lat = eventPosition.lat;
+  const lng = eventPosition.lng;
+  console.log("what is lat?", lat);
+  console.log("what is lng?", lng);
 
   //passing the center of map coordinates to the leaflet component
   const selectPark = () => {
@@ -107,8 +116,8 @@ export default function PostEvent() {
         startDate,
         endDate,
         startHour,
-        latPinEvent,
-        lngPinEvent,
+        lat,
+        lng,
         tag,
         parkId
       )
@@ -245,8 +254,8 @@ export default function PostEvent() {
       <div>
         {latCenterPark ? (
           <Leaflet
-            eventLat={latPinEvent}
-            eventLng={lngPinEvent}
+            eventLat={latPinEventPlaceHolder}
+            eventLng={lngPinEventPlaceHolder}
             parkLat={latCenterPark}
             parkLng={lngCenterPark}
             allowClick={true}
