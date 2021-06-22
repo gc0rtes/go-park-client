@@ -1,6 +1,8 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
+import Leaflet from "../../components/Leaflet";
+
 // to get params from browser bar
 import { useParams } from "react-router-dom";
 
@@ -56,7 +58,15 @@ export default function ArtDetail() {
       <h4>Contact Info.:</h4>
       <h5>Name: {event.owner.name}</h5>
       {event.phone ? <h5>Phone: {event.phone}</h5> : null}
-      {/* TODO: INSERT MAP with event location HERE! */}
+      <hr />
+      <Leaflet
+        eventLat={event.lat}
+        eventLng={event.lng}
+        parkLat={event.park.lat}
+        parkLng={event.park.lng}
+        allowClick={false}
+      />
+
       {/* TODO: button to show comments here */}
       {/* TODO: Make a Component form to Post a new comment */}
     </div>

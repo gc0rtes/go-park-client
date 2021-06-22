@@ -1,13 +1,32 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-
+import { useHistory } from "react-router-dom";
 import { selectToken } from "../../store/user/selectors";
 import { postEvent } from "../../store/eventDetails/actions";
+import { fetchEvents } from "../../store/events/actions";
+// import { selectEventDetails } from "../../store/eventDetails/selectors";
 
 //CheckBox management reference: https://www.pluralsight.com/guides/handling-multiple-inputs-with-single-onchange-handler-react
 
+const tags = [
+  "Music",
+  "Sport",
+  "Meetup",
+  "Dance",
+  "MartialArt",
+  "Fitness",
+  "Game",
+  "Education",
+];
+
 export default function PostEvent() {
   const token = useSelector(selectToken);
+  const history = useHistory();
+  // const eventDetails = useSelector(selectEventDetails);
+  // if (eventDetails) {
+  //   const eventDetailId = eventDetails.event.id;
+  //   console.log("what is eventDetailId", eventDetailId);
+  // }
 
   const dispatch = useDispatch();
 
@@ -31,10 +50,10 @@ export default function PostEvent() {
 
   //mapCenterPark is to show the map center location on leaflet
   //It'll switch according parkId selected
-  const mapCenterPark1 = [52.055858, 4.285709];
-  const mapCenterPark2 = [52.105771, 4.290591];
-  const mapCenterPark3 = [52.394852, 4.919604];
-  const mapCenterPark4 = [52.386702, 4.876364];
+  // const mapCenterPark1 = [52.055858, 4.285709];
+  // const mapCenterPark2 = [52.105771, 4.290591];
+  // const mapCenterPark3 = [52.394852, 4.919604];
+  // const mapCenterPark4 = [52.386702, 4.876364];
 
   //Set of information to post a Event
   /**
@@ -51,7 +70,7 @@ export default function PostEvent() {
   console.log("what is parkId", parkId, typeof parkId); //REMEMBER to parseInt before dispatch
   // REMEBER: userId not necessary to send  on body. Router get it from authMiddleware
    */
-
+  console.log("what is tag", tag);
   function submitForm(e) {
     e.preventDefault();
     dispatch(
@@ -69,6 +88,8 @@ export default function PostEvent() {
         parkId
       )
     );
+    dispatch(fetchEvents);
+    history.push("/");
   }
 
   if (!token) {
@@ -130,102 +151,24 @@ export default function PostEvent() {
         </label>
       </p>
       <h4>Choose one category:</h4>
-      <p>
-        <label>
-          {" "}
-          Music:{" "}
-          <input
-            value={"Music"}
-            type="radio"
-            name={"category"}
-            onChange={(e) => setTag(e.target.value)}
-          />
-        </label>
-      </p>
-      <p>
-        <label>
-          {" "}
-          Sport:{" "}
-          <input
-            value={"Sport"}
-            type="radio"
-            name={"category"}
-            onChange={(e) => setTag(e.target.value)}
-          />
-        </label>
-      </p>
-      <p>
-        <label>
-          {" "}
-          MeetUp:{" "}
-          <input
-            value={"Meetup"}
-            type="radio"
-            name={"category"}
-            onChange={(e) => setTag(e.target.value)}
-          />
-        </label>
-      </p>
-      <p>
-        <label>
-          {" "}
-          Dance:{" "}
-          <input
-            value={"Dance"}
-            type="radio"
-            name={"category"}
-            onChange={(e) => setTag(e.target.value)}
-          />
-        </label>
-      </p>
-      <p>
-        <label>
-          {" "}
-          Art Martial:{" "}
-          <input
-            value={"Art Martial"}
-            type="radio"
-            name={"category"}
-            onChange={(e) => setTag(e.target.value)}
-          />
-        </label>
-      </p>
-      <p>
-        <label>
-          {" "}
-          Fitness:{" "}
-          <input
-            value={"Fitness"}
-            type="radio"
-            name={"category"}
-            onChange={(e) => setTag(e.target.value)}
-          />
-        </label>
-      </p>
-      <p>
-        <label>
-          {" "}
-          Game:{" "}
-          <input
-            value={"Game"}
-            type="radio"
-            name={"category"}
-            onChange={(e) => setTag(e.target.value)}
-          />
-        </label>
-      </p>
-      <p>
-        <label>
-          {" "}
-          Education:{" "}
-          <input
-            value={"Education"}
-            type="radio"
-            name={"category"}
-            onChange={(e) => setTag(e.target.value)}
-          />
-        </label>
-      </p>
+      <div>
+        {tags.map((tag, index) => {
+          return (
+            <div key={index}>
+              <label>
+                {`${tag}: `}
+                <input
+                  key={index}
+                  value={tag.toLowerCase()}
+                  type="radio"
+                  name="category"
+                  onClick={(e) => setTag(e.target.value)}
+                />
+              </label>
+            </div>
+          );
+        })}
+      </div>
 
       <p>
         <label>
