@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   MapContainer,
   useMapEvents,
@@ -33,6 +33,9 @@ export default function MyMap({
     iconAnchor: [17, 46], //[left/right, top/bottom]
     popupAnchor: [0, -46], //[left/right, top/bottom]
   });
+
+  //trying to re-render when center changes
+  useEffect(() => {}, [center]);
 
   const MapPinComponent = () => {
     useMapEvents({
