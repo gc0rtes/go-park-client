@@ -13,7 +13,6 @@ import { selectAllEvents } from "../../store/events/selectors";
 import { fetchEvents } from "../../store/events/actions";
 
 const tags = [
-  "All",
   "Music",
   "Sport",
   "Meetup",
@@ -116,7 +115,9 @@ export default function SearchEvent() {
           }}
         />
       </form>
-
+      <button value={""} onClick={(e) => setSearchText(e.target.value)}>
+        All
+      </button>
       {tags.map((tag, index) => {
         return (
           <button

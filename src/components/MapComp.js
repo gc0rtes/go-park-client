@@ -46,11 +46,11 @@ function SetViewOnClick({ coords }) {
 }
 
 //Map Component start HERE
-function MapComp({ coords }) {
+function MapComp({ coords, isEventDetail }) {
   const dispatch = useDispatch();
 
   //This make the marker on map change
-  const [markerPosition, setMarkerPosition] = useState([0, 0]);
+  const [markerPosition, setMarkerPosition] = useState(coords);
   const MapPinComponent = () => {
     useMapEvents({
       click: (e) => {
@@ -69,7 +69,7 @@ function MapComp({ coords }) {
       style={{ height: "500px", width: "500px" }}
       center={coords}
       zoom={15}
-      scrollWheelZoom={true}
+      scrollWheelZoom={isEventDetail ? true : false}
     >
       <TileLayer
         attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
@@ -78,9 +78,9 @@ function MapComp({ coords }) {
 
       <SetViewOnClick coords={coords} />
 
-      <MapPinComponent />
+      {isEventDetail ? null : <MapPinComponent />}
 
-      <Marker position={markerPosition} icon={myIcon}>
+      <Marker position={isEventDetail ? coords : markerPosition} icon={myIcon}>
         <Popup>Look on the event description to know the exact location.</Popup>
       </Marker>
     </MapContainer>
