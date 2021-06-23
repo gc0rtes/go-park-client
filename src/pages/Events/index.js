@@ -11,7 +11,6 @@ import { selectAllEvents } from "../../store/events/selectors";
 import moment from "moment";
 
 const tags = [
-  "All",
   "Music",
   "Sport",
   "Meetup",
@@ -45,6 +44,9 @@ export default function Events() {
   return (
     <div>
       <h3>What's up ?</h3>
+      <button value={""} onClick={(e) => setSearchTag(e.target.value)}>
+        All
+      </button>
       {tags.map((tag, index) => {
         return (
           <button
