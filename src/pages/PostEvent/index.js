@@ -251,7 +251,7 @@ export default function PostEvent() {
         </label>
       </div>
 
-      <MapComp coords={coords} />
+      <MapComp coords={coords} isEventDetail={false} />
 
       <p>
         <button type="submit" onClick={submitForm}>
