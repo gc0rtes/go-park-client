@@ -10,10 +10,13 @@ import { Switch, Route } from "react-router-dom";
 import MessageBox from "./components/MessageBox";
 
 //Load Pages
+import Navbar from "./components/Navigation";
 import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
 import Events from "./pages/Events";
 import EventDetails from "./pages/EventDetails";
+import PostEvent from "./pages/PostEvent";
+import SearchEvent from "./pages/SearchEvent";
 
 import { useDispatch, useSelector } from "react-redux";
 import { selectAppLoading } from "./store/appState/selectors";
@@ -31,10 +34,13 @@ function App() {
     <div className="App">
       <MessageBox />
       {isLoading ? "Loading App" : null}
+      <Navbar />
       <Switch>
         <Route exact path="/" component={Events} />
         <Route path="/login" component={Login} />
         <Route path="/signup" component={SignUp} />
+        <Route path="/postevent" component={PostEvent} />
+        <Route path="/search" component={SearchEvent} />
         <Route path="/event/:id" component={EventDetails} />
       </Switch>
     </div>
