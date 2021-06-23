@@ -39,7 +39,8 @@ const myIcon = L.icon({
 //This make the setview of map change
 function SetViewOnClick({ coords }) {
   const map = useMap();
-  map.setView(coords, map.getZoom());
+  map.setView(coords);
+  // map.setView(coords, map.getZoom());
 
   return null;
 }
