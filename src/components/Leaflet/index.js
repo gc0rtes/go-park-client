@@ -39,9 +39,6 @@ export default function MyMap({
     popupAnchor: [0, -46], //[left/right, top/bottom]
   });
 
-  //trying to re-render when center changes
-  useEffect(() => {}, [center]);
-
   const MapPinComponent = () => {
     useMapEvents({
       click: (e) => {
