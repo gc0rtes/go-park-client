@@ -8,10 +8,10 @@ import { fetchEvents } from "../../store/events/actions";
 
 import { selectMarkPosition } from "../../store/eventMarkPosition/selectors";
 
-import Leaflet from "../../components/Leaflet";
+//Leaflet map
+import MapComp from "../../components/MapComp";
 
-//CheckBox management reference: https://www.pluralsight.com/guides/handling-multiple-inputs-with-single-onchange-handler-react
-
+//hard coded information (for now)
 const tags = [
   "Music",
   "Sport",
@@ -22,19 +22,37 @@ const tags = [
   "Game",
   "Education",
 ];
+const location = [
+  {
+    parkName: "Zuiderpark",
+    cityName: "The Hague",
+    parkId: 1,
+    coordenates: [52.055858, 4.285709],
+  },
+  {
+    parkName: "Westbroekpark",
+    cityName: "The Hague",
+    parkId: 2,
+    coordenates: [52.105771, 4.290591],
+  },
+  {
+    parkName: "Noorderpark",
+    cityName: "Amsterdam",
+    parkId: 3,
+    coordenates: [52.394852, 4.919604],
+  },
+  {
+    parkName: "Westerpark",
+    cityName: "Amsterdam",
+    parkId: 4,
+    coordenates: [52.386702, 4.876364],
+  },
+];
 
 export default function PostEvent() {
+  const dispatch = useDispatch();
   const token = useSelector(selectToken);
   const history = useHistory();
-  const eventPosition = useSelector(selectMarkPosition);
-
-  // const eventDetails = useSelector(selectEventDetails);
-  // if (eventDetails) {
-  //   const eventDetailId = eventDetails.event.id;
-  //   console.log("what is eventDetailId", eventDetailId);
-  // }
-
-  const dispatch = useDispatch();
 
   const [imageUrl, setImageUrl] = useState("");
   const [title, setTitle] = useState("");
@@ -43,67 +61,9 @@ export default function PostEvent() {
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
   const [startHour, setStartHour] = useState("");
-  const [parkId, setParkId] = useState();
+  const [parkId, setParkId] = useState(0);
   const [tag, setTag] = useState("");
-  const [latCenterPark, setLatCenterPark] = useState("");
-  const [lngCenterPark, setLngCenterPark] = useState("");
-
-  // TODO: lat and lng is to User set the EVENT location on leaflet map
-  // const [lat, setLat] = useState(0);
-  // const [lng, setLng] = useState(0);
-
-  // TODO: Get user Event location coordenates from LEAFLET MAP
-  // For now just hard coding the Event location coordenates
-  const latPinEventPlaceHolder = 52.055858;
-  const lngPinEventPlaceHolder = 4.285709;
-
-  const lat = eventPosition.lat;
-  const lng = eventPosition.lng;
-  console.log("what is lat?", lat);
-  console.log("what is lng?", lng);
-
-  //passing the center of map coordinates to the leaflet component
-  const selectPark = () => {
-    console.log("selectPark trigger");
-    if (parkId === 1) {
-      setLatCenterPark(52.055858);
-      setLngCenterPark(4.285709);
-    } else if (parkId === 2) {
-      setLatCenterPark(52.105771);
-      setLngCenterPark(4.290591);
-    } else if (parkId === 3) {
-      setLatCenterPark(52.394852);
-      setLngCenterPark(4.919604);
-    } else if (parkId === 4) {
-      setLatCenterPark(52.386702);
-      setLngCenterPark(4.876364);
-    }
-  };
-
-  //monitoring the parkId. If the state changes call the selectPark function
-  useEffect(() => {
-    selectPark();
-  }, [parkId]);
-
-  console.log("what is latCenterPark", latCenterPark);
-  console.log("what is lngCenterPark", lngCenterPark);
-
-  //Set of information to post a Event
-  /**
-  console.log(imageUrl);
-  console.log(title);
-  console.log(description);
-  console.log(phone);
-  console.log("what is startDate", startDate, typeof startDate); //string
-  console.log("what is endDate", endDate, typeof endDate); //string
-  console.log("what is startHour", startHour, typeof startHour); //string
-  console.log("what is tag", tag);
-  console.log("what is lat", lat);
-  console.log("what is lng", lng);
-  console.log("what is tag", tag);
-  console.log("what is parkId", parkId, typeof parkId); //REMEMBER to parseInt before dispatch
-  // REMEBER: userId not necessary to send  on body. Router get it from authMiddleware
-   */
+  const [coords, setCoords] = useState([52.055858, 4.285709]);
 
   function submitForm(e) {
     e.preventDefault();
@@ -120,11 +80,51 @@ export default function PostEvent() {
         lng,
         tag,
         parkId
+        //userId will come from the router (authMiddleware)
       )
     );
     dispatch(fetchEvents());
     history.push("/");
   }
+
+  //Get event position from Redux State and put in submitForm function
+  const eventPosition = useSelector(selectMarkPosition);
+  const lat = eventPosition.lat;
+  const lng = eventPosition.lng;
+  // console.log("what is lat?", lat);
+  // console.log("what is lng?", lng);
+
+  //Set of information to post a Event
+  // console.log(imageUrl);
+  // console.log(title);
+  // console.log(description);
+  // console.log(phone);
+  // console.log("what is startDate", startDate, typeof startDate); //string
+  // console.log("what is endDate", endDate, typeof endDate); //string
+  // console.log("what is startHour", startHour, typeof startHour); //string
+  // console.log("what is lat", lat);
+  // console.log("what is lng", lng);
+  // console.log("what is tag", tag);
+  // console.log("what is parkId", parkId, typeof parkId); //REMEMBER to parseInt before dispatch
+
+  const handleChange = (e) => {
+    const target = e.target.value;
+    // console.log("what is target?", target, typeof target);
+    const parkId = parseInt(target);
+    // console.log("what is parkId", parkId);
+    const found = location.find((id) => id.parkId === parkId);
+    // console.log("what is found", found);
+    const lat = found.coordenates[0];
+    const lng = found.coordenates[1];
+    // console.log("what is lat?", lat);
+    // console.log("what is lat?", lng);
+    setCoords([lat, lng]);
+    setParkId(parkId);
+  };
+
+  useEffect(() => {
+    // console.log("what is coords?", coords);
+  }, [coords]);
 
   if (!token) {
     return <div>You need to login to post a Event</div>;
@@ -205,24 +205,6 @@ export default function PostEvent() {
       </div>
 
       <p>
-        <label>
-          Select a City / Park:
-          <select
-            name="park"
-            value={parkId}
-            onChange={(e) => {
-              setParkId(parseInt(e.target.value));
-            }}
-          >
-            <option defaultValue>Select below</option>
-            <option value="1">The Hague: Zuiderpark</option>
-            <option value="2">The Hague: Westbroekpark</option>
-            <option value="3">Amsterdam: Noorderpark</option>
-            <option value="4">Amsterdam: Westerpark</option>
-          </select>
-        </label>
-      </p>
-      <p>
         <label>Start Date:</label>
         <input
           type="date"
@@ -249,21 +231,28 @@ export default function PostEvent() {
           name="startHour"
         ></input>
       </p>
-      {/* TODO: INSERT MAP ACCORDING CHOSE PARK  AND LET THE USER INSERT A LOCATION and 
-      update the setState for 'lat' and 'lng'*/}
+
       <div>
-        {latCenterPark ? (
-          <Leaflet
-            eventLat={latPinEventPlaceHolder}
-            eventLng={lngPinEventPlaceHolder}
-            parkLat={latCenterPark}
-            parkLng={lngCenterPark}
-            allowClick={true}
-          />
-        ) : (
-          ""
-        )}
+        <label>
+          Select a City : Park
+          <select value={parkId} onChange={handleChange}>
+            <option value={0} disabled>
+              --- Select below ---
+            </option>
+            {location.map((park, idx) => {
+              return (
+                <option value={park.parkId} key={idx}>
+                  {`${park.cityName}: 
+                  ${park.parkName}`}
+                </option>
+              );
+            })}
+          </select>
+        </label>
       </div>
+
+      <MapComp coords={coords} isEventDetail={false} />
+
       <p>
         <button type="submit" onClick={submitForm}>
           {" "}

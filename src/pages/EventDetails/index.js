@@ -1,8 +1,6 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
-import Leaflet from "../../components/Leaflet";
-
 // to get params from browser bar
 import { useParams } from "react-router-dom";
 
@@ -17,25 +15,23 @@ import { fetchEventById } from "../../store/eventDetails/actions";
 import { selectEventDetails } from "../../store/eventDetails/selectors";
 import { selectUser } from "../../store/user/selectors";
 
+//Leaflet map
+import MapComp from "../../components/MapComp";
+
+import moment from "moment";
+
 export default function ArtDetail() {
   const { id } = useParams();
   const event = useSelector(selectEventDetails);
   const user = useSelector(selectUser);
   const dispatch = useDispatch();
 
+  const coords = [event.lat, event.lng];
+  // console.log("what is coords?", coords);
+
   useEffect(() => {
     dispatch(fetchEventById(id));
   }, [dispatch, id]);
-
-  // TODO: update the value if user is going or not
-  // useEffect(() => {
-  //   setAmount(minBid || 0);
-  // }, [minBid]);
-
-  // TODO: Post comment
-  // useEffect(() => {
-  //   setAmount(minBid || 0);
-  // }, [minBid]);
 
   if (!event.id) {
     return "Loading...";
@@ -45,7 +41,12 @@ export default function ArtDetail() {
     <div>
       <img src={event.imageUrl} alt={event.title} />
       <h4>{event.title}</h4>
-      <h5>{event.startDate}</h5>
+      <h5>When? {moment(event.startDate).format("ll")}</h5>
+      <h5>Start at: {event.startHour}</h5>
+      <h5>
+        Location: {event.park.name} - {event.park.city.name}
+      </h5>
+
       <h5>{event.going.length} people are going</h5>
       {user.token ? (
         <p>
@@ -59,14 +60,7 @@ export default function ArtDetail() {
       <h5>Name: {event.owner.name}</h5>
       {event.phone ? <h5>Phone: {event.phone}</h5> : null}
       <hr />
-      <Leaflet
-        eventLat={event.lat}
-        eventLng={event.lng}
-        parkLat={event.park.lat}
-        parkLng={event.park.lng}
-        allowClick={false}
-      />
-
+      <MapComp coords={coords} isEventDetail={true} />
       {/* TODO: button to show comments here */}
       {/* TODO: Make a Component form to Post a new comment */}
     </div>
