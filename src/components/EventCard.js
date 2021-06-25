@@ -11,15 +11,19 @@ export default function Artwork({
   cityName,
 }) {
   return (
-    <div>
-      <div>
-        <img src={imageUrl} alt={title} />
-        <h3>{title}</h3>
-        <h5>{startDate}</h5>
-        <h5>{startHour}</h5>
-        <h5>{parkName}</h5>
-        <h5>{cityName}</h5>
-        <Link to={`/event/${id}`}>Details</Link>
+    <div className="card text-center">
+      <img className="card-img-top" src={imageUrl} alt={title} />
+      <div className="card-body">
+        <h3 className="card-title">{title}</h3>
+        <h5 className="card-text">{startDate}</h5>
+        <h5 className="card-text">{startHour}</h5>
+        <h5 className="card-text">{parkName}</h5>
+        <h5 className="card-text">{cityName}</h5>
+        <Link to={`/event/${id}`}>
+          <button type="button" class="btn btn-primary">
+            Details
+          </button>
+        </Link>
       </div>
     </div>
   );
