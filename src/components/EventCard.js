@@ -20,7 +20,7 @@ export default function Artwork({
         <h5 className="card-text">{parkName}</h5>
         <h5 className="card-text">{cityName}</h5>
         <Link to={`/event/${id}`}>
-          <button type="button" class="btn btn-primary">
+          <button type="button" class="btn btn-primary login_btn">
             Details
           </button>
         </Link>

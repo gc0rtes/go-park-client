@@ -103,24 +103,33 @@ export default function SearchEvent() {
   console.log("what is filterTomorrow", filterTomorrow);
 
   return (
-    <div>
-      <h3>Search Page</h3>
-      {/* wrapping our input in a form so we can pass a function onSubmit */}
-      <form onSubmit={handleSubmit}>
-        <input
-          type="search"
-          value={searchText}
-          onChange={(event) => {
-            setSearchText(event.target.value.toLowerCase());
-          }}
-        />
-      </form>
-      <button value={""} onClick={(e) => setSearchText(e.target.value)}>
+    <div className="container">
+      <div className="p-4 p-md-5 mb-4 text-black rounded bg-light">
+        <h3>Find your event here!</h3>
+        {/* wrapping our input in a form so we can pass a function onSubmit */}
+        <form onSubmit={handleSubmit}>
+          <input
+            type="search"
+            value={searchText}
+            onChange={(event) => {
+              setSearchText(event.target.value.toLowerCase());
+            }}
+          />
+        </form>
+      </div>
+      <button
+        type="button"
+        class="btn btn-primary"
+        value={""}
+        onClick={(e) => setSearchText(e.target.value)}
+      >
         All
       </button>
       {tags.map((tag, index) => {
         return (
           <button
+            type="button"
+            class="btn btn-primary"
             key={index}
             value={tag.toLowerCase()}
             onClick={(e) => setSearchText(e.target.value)}
@@ -161,8 +170,20 @@ export default function SearchEvent() {
         })}
       </select>
       <br />
-      <button onClick={() => setResults(filterToday)}>Today</button>
-      <button onClick={() => setResults(filterTomorrow)}>Tomorrow</button>
+      <button
+        type="button"
+        class="btn btn-primary"
+        onClick={() => setResults(filterToday)}
+      >
+        Today
+      </button>
+      <button
+        type="button"
+        class="btn btn-primary"
+        onClick={() => setResults(filterTomorrow)}
+      >
+        Tomorrow
+      </button>
       <p>
         {/* showing the amount of search results with 3 different cases:
       no results, 1 result, more than 1 */}

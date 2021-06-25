@@ -38,7 +38,7 @@ export default function ArtDetail() {
   }
 
   return (
-    <div>
+    <div className="container">
       <img src={event.imageUrl} alt={event.title} />
       <h4>{event.title}</h4>
       <h5>When? {moment(event.startDate).format("ll")}</h5>

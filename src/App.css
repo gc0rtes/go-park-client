@@ -64,3 +64,118 @@ h6 {
   height: 15vw;
   object-fit: cover;
 }
+
+/* Login Form Made with love by Mutiullah Samim*/
+
+@import url("https://fonts.googleapis.com/css?family=Numans");
+/* 
+html,
+body {
+  background-image: url("http://getwallpapers.com/wallpaper/full/a/5/d/544750.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 100%;
+  font-family: "Numans", sans-serif;
+} */
+
+.login-body {
+  background-image: url("http://getwallpapers.com/wallpaper/full/a/5/d/544750.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 100%;
+  font-family: "Numans", sans-serif;
+}
+
+.mylogin-container {
+  height: 75vh;
+  background-image: url("./resources/images/background4.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.login-card {
+  height: 370px;
+  /* height: 70vh; */
+  margin-top: auto;
+  margin-bottom: auto;
+  width: 300px;
+  background-color: rgba(0, 0, 0, 0.5) !important;
+}
+
+.social_icon span {
+  font-size: 60px;
+  margin-left: 10px;
+  color: #ffc312;
+}
+
+.social_icon span:hover {
+  color: white;
+  cursor: pointer;
+}
+
+/* .login-card-header h3 {
+  color: white;
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+  padding-right: 1.25rem;
+  padding-left: 1.25rem;
+} */
+.login-card-header h3 {
+  color: white;
+}
+.input-group-text-w-h {
+  height: 38px;
+  width: 50px;
+}
+
+.form-group-margin {
+  margin-bottom: 1rem;
+}
+.social_icon {
+  position: absolute;
+  right: 20px;
+  top: -45px;
+}
+
+.input-group-prepend span {
+  width: 50px;
+  background-color: #1b28da;
+  color: black;
+  border: 0 !important;
+}
+
+input:focus {
+  outline: 0 0 0 0 !important;
+  box-shadow: 0 0 0 0 !important;
+}
+
+.remember {
+  color: white;
+  margin-bottom: 15px;
+}
+
+.remember input {
+  width: 20px;
+  height: 20px;
+  margin-left: 15px;
+  margin-right: 5px;
+}
+
+.login_btn {
+  color: whitesmoke;
+  background-color: #1b28da;
+  width: 100px;
+}
+
+.login_btn:hover {
+  color: black;
+  background-color: white;
+}
+
+.login-links {
+  color: white;
+}
+
+.login-links a {
+  margin-left: 4px;
+}

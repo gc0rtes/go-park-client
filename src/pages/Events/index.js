@@ -54,8 +54,8 @@ export default function Events() {
             Discover what's going on in your city park
           </h1>
           <p className="lead my-3">
-            Explore, create and joing to events that take places on the The
-            Nederland parks
+            Explore, create and join events that take places in the Nederlands
+            parks
           </p>
         </div>
       </div>
