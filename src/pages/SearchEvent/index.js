@@ -6,7 +6,8 @@ import { useSelector, useDispatch } from "react-redux";
 import moment from "moment";
 
 //EventCard component
-import EventCard from "../../components/EventCard";
+//import EventCard from "../../components/EventCard";
+import ModernCard from "../../components/ModernCard";
 
 //Actions and Selectors
 import { selectAllEvents } from "../../store/events/selectors";
@@ -119,7 +120,7 @@ export default function SearchEvent() {
       </div>
       <button
         type="button"
-        class="btn btn-primary"
+        className="btn btn-primary"
         value={""}
         onClick={(e) => setSearchText(e.target.value)}
       >
@@ -129,7 +130,7 @@ export default function SearchEvent() {
         return (
           <button
             type="button"
-            class="btn btn-primary"
+            className="btn btn-primary"
             key={index}
             value={tag.toLowerCase()}
             onClick={(e) => setSearchText(e.target.value)}
@@ -172,14 +173,14 @@ export default function SearchEvent() {
       <br />
       <button
         type="button"
-        class="btn btn-primary"
+        className="btn btn-primary"
         onClick={() => setResults(filterToday)}
       >
         Today
       </button>
       <button
         type="button"
-        class="btn btn-primary"
+        className="btn btn-primary"
         onClick={() => setResults(filterTomorrow)}
       >
         Tomorrow
@@ -193,18 +194,21 @@ export default function SearchEvent() {
           ? `${results.length} result`
           : `${results.length} results`}
       </p>
-      <div>
+      <div className="row">
         {results.map((event) => {
           return (
-            <EventCard
-              key={event.id}
-              id={event.id}
-              imageUrl={event.imageUrl}
-              title={event.title}
-              startDate={event.startDate}
-              parkName={event.park.name}
-              cityName={event.park.city.name}
-            />
+            <div key={event.id} className="col-md-4">
+              <ModernCard
+                id={event.id}
+                imageUrl={event.imageUrl}
+                title={event.title}
+                startDate={moment(event.startDate).format("ll")}
+                startHour={event.startHour}
+                parkName={event.park.name}
+                cityName={event.park.city.name}
+                tag={event.tag}
+              />
+            </div>
           );
         })}
       </div>

@@ -2,7 +2,8 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 //Event Card component
-import EventCard from "../../components/EventCard";
+//import EventCard from "../../components/EventCard";
+import ModernCard from "../../components/ModernCard";
 
 //Actions and Selectors
 import { fetchEvents } from "../../store/events/actions";
@@ -44,7 +45,7 @@ export default function Events() {
 
   const toMap = filtredArray.length > 0 ? filtredArray : allEvents;
   return (
-    <main className="container">
+    <main className="container py-3">
       <div
         className="p-4 p-md-5 mb-4 text-white rounded bg-light"
         style={{ backgroundImage: `url(${background})` }}
@@ -64,7 +65,7 @@ export default function Events() {
         {toMap.map((event) => {
           return (
             <div key={event.id} className="col-md-4">
-              <EventCard
+              <ModernCard
                 id={event.id}
                 imageUrl={event.imageUrl}
                 title={event.title}
@@ -72,6 +73,7 @@ export default function Events() {
                 startHour={event.startHour}
                 parkName={event.park.name}
                 cityName={event.park.city.name}
+                tag={event.tag}
               />
             </div>
           );
