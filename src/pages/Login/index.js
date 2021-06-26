@@ -43,7 +43,7 @@ export default function SignIn() {
       }
     >
       <div className="d-flex justify-content-center h-100">
-        <div className="card login-card">
+        <div className="my-login-card login-card">
           <div className="card-header login-card-header">
             <h3>Sign In</h3>
           </div>

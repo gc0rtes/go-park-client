@@ -25,12 +25,12 @@ export default function Artwork({
           {/* <i className="fas fa-futbol"></i> Sport */}
         </h6>
         <div className="stats">
-          <i className="far fa-calendar-alt"></i> {startDate} &nbsp;
+          <i className="far fa-calendar-alt"></i> {startDate} | &nbsp;
           <i className="fa fa-clock-o"></i> {startHour}
         </div>
-        <h4 className="card-caption">{title}</h4>
+        <h5 className="card-caption">{title}</h5>
         <p className="card-description">
-          {parkName} - {cityName}
+          &bull; {parkName} &bull; {cityName}
         </p>
         <div className="ftr">
           <div className="author">
