@@ -66,6 +66,11 @@ h6 {
   object-fit: cover;
 }
 
+/*========= Style to Post an event =====*/
+.container-form {
+  max-width: 960px;
+}
+
 /*========= Style tag name =====*/
 .tag {
   border-radius: 5px;

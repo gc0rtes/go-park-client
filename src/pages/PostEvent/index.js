@@ -20,6 +20,7 @@ const tags = [
   "Game",
   "Education",
 ];
+
 const location = [
   {
     parkName: "Zuiderpark",
@@ -128,135 +129,215 @@ export default function PostEvent() {
     return <div>You need to login to post a Event</div>;
   }
   return (
-    <form>
-      <h2> Start a new Event!</h2>
-      <p>
-        <label>
-          {" "}
-          Event Photo Url:{" "}
-          <input
-            type="text"
-            value={imageUrl}
-            placeholder="Event image url"
-            onChange={(e) => setImageUrl(e.target.value)}
-            required
-          />
-        </label>
-      </p>
-      <p>
-        <label>
-          {" "}
-          Title:{" "}
-          <input
-            type="text"
-            value={title}
-            placeholder="You Event's title here"
-            onChange={(e) => setTitle(e.target.value)}
-            required
-          />
-        </label>
-      </p>
-      <p>
-        <label>
-          {" "}
-          Description:{" "}
-          <input
-            type="text"
-            value={description}
-            placeholder="Event descriptions here"
-            onChange={(e) => setDescription(e.target.value)}
-            required
-          />
-        </label>
-      </p>
-      <p>
-        <label>
-          {" "}
-          Event's Phone Number:{" "}
-          <input
-            type="number"
-            value={phone}
-            placeholder="Event's phone number here"
-            onChange={(e) => setPhone(e.target.value)}
-            required
-          />
-        </label>
-      </p>
-      <h4>Choose one category:</h4>
-      <div>
-        {tags.map((tag, index) => {
-          return (
-            <div key={index}>
-              <label>
-                {`${tag}: `}
+    <div class="container container-form bg-light shadow p-3 mb-5  rounded ">
+      <div class="row g-5 justify-content-center">
+        <div class="py-5 col-md-8 text-center">
+          {/* <img class="d-block mx-auto mb-4" src="../assets/brand/bootstrap-logo.svg" alt="" width="72" height="57"> */}
+          <h2>Start a New Event</h2>
+          <ul style={{ listStyle: "none" }}>
+            <li class="lead">
+              Choose a title that describes your event &#129300;
+            </li>
+            <li class="lead">
+              Put some cool description and as informative as possible 🎯
+            </li>
+            <li class="lead">Select a category for your event ⚽</li>
+            <li class="lead">And inform the date and hour 📆</li>
+            <li class="lead">Pick a park from the list 🏞</li>
+            <li class="lead">
+              Insert the exact meeting point of your event on the map 📍
+            </li>
+            <i>Obs: all fields are required 💯</i>
+          </ul>
+        </div>
+      </div>
+      <div class="row g-5 justify-content-center">
+        {/* <div class="col-md-5 col-lg-4 order-md-last"></div> */}
+
+        <div class="col-md-7 col-lg-8">
+          <h4 class="mb-3">Event description</h4>
+          <form class="needs-validation" novalidate>
+            <div class="row g-3">
+              <div class="col-sm-6">
+                <label for="imgUrl" class="form-label">
+                  Event Photo Url
+                </label>
                 <input
-                  key={index}
-                  value={tag.toLowerCase()}
-                  type="radio"
-                  name="category"
-                  onClick={(e) => setTag(e.target.value)}
+                  id="imgUrl"
+                  class="form-control"
+                  type="text"
+                  value={imageUrl}
+                  placeholder="https://"
+                  onChange={(e) => setImageUrl(e.target.value)}
+                  required
                 />
-              </label>
+                <div class="invalid-feedback">An image url is required.</div>
+              </div>
+
+              <div class="col-sm-6">
+                <label for="eventTitle" class="form-label">
+                  Title
+                </label>
+                <input
+                  id="eventTitle"
+                  class="form-control"
+                  type="text"
+                  value={title}
+                  placeholder="Your title here"
+                  onChange={(e) => setTitle(e.target.value)}
+                  required
+                />
+                <div class="invalid-feedback">A title is required.</div>
+              </div>
+
+              <div class="col-12">
+                <label for="textarea" class="form-label">
+                  Description
+                </label>
+                <textarea
+                  id="textarea"
+                  class="form-control"
+                  type="textarea"
+                  rows="4"
+                  value={description}
+                  placeholder="Event descriptions here"
+                  onChange={(e) => setDescription(e.target.value)}
+                  required
+                />
+                <div class="invalid-feedback">A description is required.</div>
+              </div>
+
+              <div class="col-sm-6">
+                <label for="phone" class="form-label">
+                  Event Contact Phone
+                </label>
+                <input
+                  id="phone"
+                  class="form-control"
+                  type="number"
+                  value={phone}
+                  placeholder=""
+                  onChange={(e) => setPhone(e.target.value)}
+                  required
+                />
+                <div class="invalid-feedback">A description is required.</div>
+              </div>
             </div>
-          );
-        })}
-      </div>
+            <hr class="my-4" />
+            <div class="row py-3 g-5">
+              {/* <label class="form-label"></label> */}
+              <div class="col-sm-6">
+                <label class="form-label">Choose one category</label>
 
-      <p>
-        <label>Start Date:</label>
-        <input
-          type="date"
-          value={startDate}
-          name="startDate"
-          onChange={(e) => setStartDate(e.target.value)}
-        ></input>
-      </p>
-      <p>
-        <label>End Date:</label>
-        <input
-          type="date"
-          value={endDate}
-          name="endDate"
-          onChange={(e) => setEndDate(e.target.value)}
-        ></input>
-      </p>
-      <p>
-        <label>What time event start ? </label>
-        <input
-          type="time"
-          value={startHour}
-          onChange={(e) => setStartHour(e.target.value)}
-          name="startHour"
-        ></input>
-      </p>
+                <div>
+                  {tags.map((tag, index) => {
+                    return (
+                      <div key={index} class="form-check-inline py-3">
+                        <label for={tag} class="form-check-label">
+                          {`${tag}:`} &nbsp;
+                        </label>
+                        <input
+                          key={index}
+                          id={tag}
+                          class="form-check-input"
+                          name="category"
+                          value={tag.toLowerCase()}
+                          type="radio"
+                          onClick={(e) => setTag(e.target.value)}
+                        />
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <div class="mb-3">
+                  <label for="startDate" class="form-label ">
+                    Start Date
+                  </label>
+                  <input
+                    id="startDate"
+                    class="form-control"
+                    type="date"
+                    value={startDate}
+                    name="startDate"
+                    onChange={(e) => setStartDate(e.target.value)}
+                  ></input>
+                </div>
 
-      <div>
-        <label>
-          Select a City : Park
-          <select value={parkId} onChange={handleChange}>
-            <option value={0} disabled>
-              --- Select below ---
-            </option>
-            {location.map((park, idx) => {
-              return (
-                <option value={park.parkId} key={idx}>
-                  {`${park.cityName}: 
-                  ${park.parkName}`}
+                <div class="mb-3">
+                  <label for="endDate" class="form-label">
+                    End Date
+                  </label>
+                  <input
+                    id="endDate"
+                    class="form-control"
+                    type="date"
+                    value={endDate}
+                    name="endDate"
+                    onChange={(e) => setEndDate(e.target.value)}
+                  ></input>
+                </div>
+                <label for="startHour" class="form-label">
+                  What time event start ?{" "}
+                </label>
+                <input
+                  id="startHour"
+                  class="form-control"
+                  type="time"
+                  value={startHour}
+                  onChange={(e) => setStartHour(e.target.value)}
+                  name="startHour"
+                ></input>
+              </div>
+            </div>
+            <hr class="mb-4" />
+
+            <div class="col-12  mb-3">
+              <label for="cityPark" class="form-label">
+                Select a City : Park
+              </label>
+              <select
+                id="cityPark"
+                class="form-control"
+                value={parkId}
+                onChange={handleChange}
+              >
+                <option value={0} disabled>
+                  --- Select below ---
                 </option>
-              );
-            })}
-          </select>
-        </label>
+                {location.map((park, idx) => {
+                  return (
+                    <option value={park.parkId} key={idx}>
+                      {`${park.cityName} : 
+                  ${park.parkName}`}
+                    </option>
+                  );
+                })}
+              </select>
+            </div>
+            <div class="col-12 mb-3">
+              <label class="form-label">
+                Insert a marker on the exact location of the event
+              </label>
+              {/* <div class="shadow p-3 mb-5 bg-body rounded "> */}
+              <div class="shadow p-1 mb-3 rounded">
+                <MapComp coords={coords} isEventDetail={false} />
+              </div>
+            </div>
+            <hr class="mb-3" />
+
+            <button
+              class="w-100 btn btn-primary btn-lg"
+              type="submit"
+              onClick={submitForm}
+            >
+              Create a new event
+            </button>
+          </form>
+          <i>&nbsp;</i>
+        </div>
       </div>
-
-      <MapComp coords={coords} isEventDetail={false} />
-
-      <p>
-        <button type="submit" onClick={submitForm}>
-          {" "}
-          CREATE{" "}
-        </button>
-      </p>
-    </form>
+    </div>
   );
 }

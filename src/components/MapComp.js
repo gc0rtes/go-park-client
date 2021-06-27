@@ -66,7 +66,7 @@ function MapComp({ coords, isEventDetail }) {
 
   return (
     <MapContainer
-      style={{ height: "500px", width: "500px" }}
+      style={{ height: "500px", width: "600px" }}
       center={coords}
       zoom={15}
       scrollWheelZoom={isEventDetail ? true : false}
