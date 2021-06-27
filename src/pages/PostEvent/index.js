@@ -2,9 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { selectToken } from "../../store/user/selectors";
-import { postEvent } from "../../store/eventDetails/actions";
-import { fetchEvents } from "../../store/events/actions";
-// import { selectEventDetails } from "../../store/eventDetails/selectors";
+import { postEvent } from "../../store/events/actions";
 
 import { selectMarkPosition } from "../../store/eventMarkPosition/selectors";
 
@@ -83,7 +81,7 @@ export default function PostEvent() {
         //userId will come from the router (authMiddleware)
       )
     );
-    dispatch(fetchEvents());
+
     history.push("/");
   }
 
