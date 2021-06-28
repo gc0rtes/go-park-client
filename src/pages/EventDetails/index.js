@@ -38,31 +38,50 @@ export default function ArtDetail() {
   }
 
   return (
-    <div className="container">
-      <img src={event.imageUrl} alt={event.title} />
-      <h4>{event.title}</h4>
-      <h5>When? {moment(event.startDate).format("ll")}</h5>
-      <h5>Start at: {event.startHour}</h5>
-      <h5>
-        Location: {event.park.name} - {event.park.city.name}
-      </h5>
+    <div className="container bg-light shadow p-3 my-3  rounded ">
+      <div className="row  justify-content-center">
+        <div className="py-5 col-md-6 ">
+          <div>
+            <img
+              className="img-fit-cover-detail shadow rounded mb-3 p-2"
+              src={event.imageUrl}
+              alt={event.title}
+            />
+          </div>
+          <div className="text-center">
+            <h4>{event.title}</h4>
+            <h5>
+              <i className="far fa-calendar-alt"></i> &nbsp;
+              {moment(event.startDate).format("ll")}
+            </h5>
+            <h5>
+              <i className="fa fa-clock-o"></i> &nbsp; {event.startHour}
+            </h5>
+            <h5>
+              <i class="fas fa-map-marker-alt"></i> &nbsp; {event.park.name} -
+              &nbsp;{event.park.city.name}
+            </h5>
 
-      <h5>{event.going.length} people are going</h5>
-      {user.token ? (
-        <p>
-          <button>Going</button>
-        </p>
-      ) : null}
-      <hr />
-      <h4>Event Info.:</h4>
-      <p> {event.description} </p>
-      <h4>Contact Info.:</h4>
-      <h5>Name: {event.owner.name}</h5>
-      {event.phone ? <h5>Phone: {event.phone}</h5> : null}
-      <hr />
-      <MapComp coords={coords} isEventDetail={true} />
-      {/* TODO: button to show comments here */}
-      {/* TODO: Make a Component form to Post a new comment */}
+            <h5>{event.going.length} people are going</h5>
+            {user.token ? (
+              <p>
+                <button>Going</button>
+              </p>
+            ) : null}
+          </div>
+
+          <hr />
+          <h4>Event Info.:</h4>
+          <p> {event.description} </p>
+          <h4>Contact Info.:</h4>
+          <h5>Name: {event.owner.name}</h5>
+          {event.phone ? <h5>Phone: {event.phone}</h5> : null}
+          <hr />
+          <MapComp coords={coords} isEventDetail={true} />
+          {/* TODO: button to show comments here */}
+          {/* TODO: Make a Component form to Post a new comment */}
+        </div>
+      </div>
     </div>
   );
 }

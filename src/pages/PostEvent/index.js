@@ -129,74 +129,76 @@ export default function PostEvent() {
     return <div>You need to login to post a Event</div>;
   }
   return (
-    <div class="container container-form bg-light shadow p-3 mb-5  rounded ">
-      <div class="row g-5 justify-content-center">
-        <div class="py-5 col-md-8 text-center">
-          {/* <img class="d-block mx-auto mb-4" src="../assets/brand/bootstrap-logo.svg" alt="" width="72" height="57"> */}
+    <div className="container container-form bg-light shadow p-3 mb-5  rounded ">
+      <div className="row g-5 justify-content-center">
+        <div className="py-5 col-md-8 text-center">
+          {/* <img className="d-block mx-auto mb-4" src="../assets/brand/bootstrap-logo.svg" alt="" width="72" height="57"> */}
           <h2>Start a New Event</h2>
           <ul style={{ listStyle: "none" }}>
-            <li class="lead">
+            <li className="lead">
               Choose a title that describes your event &#129300;
             </li>
-            <li class="lead">
+            <li className="lead">
               Put some cool description and as informative as possible 🎯
             </li>
-            <li class="lead">Select a category for your event ⚽</li>
-            <li class="lead">And inform the date and hour 📆</li>
-            <li class="lead">Pick a park from the list 🏞</li>
-            <li class="lead">
+            <li className="lead">Select a category for your event ⚽</li>
+            <li className="lead">And inform the date and hour 📆</li>
+            <li className="lead">Pick a park from the list 🏞</li>
+            <li className="lead">
               Insert the exact meeting point of your event on the map 📍
             </li>
             <i>Obs: all fields are required 💯</i>
           </ul>
         </div>
       </div>
-      <div class="row g-5 justify-content-center">
-        {/* <div class="col-md-5 col-lg-4 order-md-last"></div> */}
+      <div className="row g-5 justify-content-center">
+        {/* <div className="col-md-5 col-lg-4 order-md-last"></div> */}
 
-        <div class="col-md-7 col-lg-8">
-          <h4 class="mb-3">Event description</h4>
-          <form class="needs-validation" novalidate>
-            <div class="row g-3">
-              <div class="col-sm-6">
-                <label for="imgUrl" class="form-label">
+        <div className="col-md-7 col-lg-8">
+          <h4 className="mb-3">Event description</h4>
+          <form className="needs-validation" novalidate>
+            <div className="row g-3">
+              <div className="col-sm-6">
+                <label for="imgUrl" className="form-label">
                   Event Photo Url
                 </label>
                 <input
                   id="imgUrl"
-                  class="form-control"
+                  className="form-control"
                   type="text"
                   value={imageUrl}
                   placeholder="https://"
                   onChange={(e) => setImageUrl(e.target.value)}
                   required
                 />
-                <div class="invalid-feedback">An image url is required.</div>
+                <div className="invalid-feedback">
+                  An image url is required.
+                </div>
               </div>
 
-              <div class="col-sm-6">
-                <label for="eventTitle" class="form-label">
+              <div className="col-sm-6">
+                <label for="eventTitle" className="form-label">
                   Title
                 </label>
                 <input
                   id="eventTitle"
-                  class="form-control"
+                  className="form-control"
                   type="text"
                   value={title}
                   placeholder="Your title here"
                   onChange={(e) => setTitle(e.target.value)}
                   required
                 />
-                <div class="invalid-feedback">A title is required.</div>
+                <div className="invalid-feedback">A title is required.</div>
               </div>
 
-              <div class="col-12">
-                <label for="textarea" class="form-label">
+              <div className="col-12">
+                <label for="textarea" className="form-label">
                   Description
                 </label>
                 <textarea
                   id="textarea"
-                  class="form-control"
+                  className="form-control"
                   type="textarea"
                   rows="4"
                   value={description}
@@ -204,42 +206,46 @@ export default function PostEvent() {
                   onChange={(e) => setDescription(e.target.value)}
                   required
                 />
-                <div class="invalid-feedback">A description is required.</div>
+                <div className="invalid-feedback">
+                  A description is required.
+                </div>
               </div>
 
-              <div class="col-sm-6">
-                <label for="phone" class="form-label">
+              <div className="col-sm-6">
+                <label for="phone" className="form-label">
                   Event Contact Phone
                 </label>
                 <input
                   id="phone"
-                  class="form-control"
+                  className="form-control"
                   type="number"
                   value={phone}
                   placeholder=""
                   onChange={(e) => setPhone(e.target.value)}
                   required
                 />
-                <div class="invalid-feedback">A description is required.</div>
+                <div className="invalid-feedback">
+                  A description is required.
+                </div>
               </div>
             </div>
-            <hr class="my-4" />
-            <div class="row py-3 g-5">
-              {/* <label class="form-label"></label> */}
-              <div class="col-sm-6">
-                <label class="form-label">Choose one category</label>
+            <hr className="my-4" />
+            <div className="row py-3 g-5">
+              {/* <label className="form-label"></label> */}
+              <div className="col-sm-6">
+                <label className="form-label">Choose one category</label>
 
                 <div>
                   {tags.map((tag, index) => {
                     return (
-                      <div key={index} class="form-check-inline py-3">
-                        <label for={tag} class="form-check-label">
+                      <div key={index} className="form-check-inline py-3">
+                        <label for={tag} className="form-check-label">
                           {`${tag}:`} &nbsp;
                         </label>
                         <input
                           key={index}
                           id={tag}
-                          class="form-check-input"
+                          className="form-check-input"
                           name="category"
                           value={tag.toLowerCase()}
                           type="radio"
@@ -250,14 +256,14 @@ export default function PostEvent() {
                   })}
                 </div>
               </div>
-              <div class="col-sm-6">
-                <div class="mb-3">
-                  <label for="startDate" class="form-label ">
+              <div className="col-sm-6">
+                <div className="mb-3">
+                  <label for="startDate" className="form-label ">
                     Start Date
                   </label>
                   <input
                     id="startDate"
-                    class="form-control"
+                    className="form-control"
                     type="date"
                     value={startDate}
                     name="startDate"
@@ -265,25 +271,25 @@ export default function PostEvent() {
                   ></input>
                 </div>
 
-                <div class="mb-3">
-                  <label for="endDate" class="form-label">
+                <div className="mb-3">
+                  <label for="endDate" className="form-label">
                     End Date
                   </label>
                   <input
                     id="endDate"
-                    class="form-control"
+                    className="form-control"
                     type="date"
                     value={endDate}
                     name="endDate"
                     onChange={(e) => setEndDate(e.target.value)}
                   ></input>
                 </div>
-                <label for="startHour" class="form-label">
+                <label for="startHour" className="form-label">
                   What time event start ?{" "}
                 </label>
                 <input
                   id="startHour"
-                  class="form-control"
+                  className="form-control"
                   type="time"
                   value={startHour}
                   onChange={(e) => setStartHour(e.target.value)}
@@ -291,15 +297,15 @@ export default function PostEvent() {
                 ></input>
               </div>
             </div>
-            <hr class="mb-4" />
+            <hr className="mb-4" />
 
-            <div class="col-12  mb-3">
-              <label for="cityPark" class="form-label">
+            <div className="col-12  mb-3">
+              <label for="cityPark" className="form-label">
                 Select a City : Park
               </label>
               <select
                 id="cityPark"
-                class="form-control"
+                className="form-control"
                 value={parkId}
                 onChange={handleChange}
               >
@@ -316,19 +322,19 @@ export default function PostEvent() {
                 })}
               </select>
             </div>
-            <div class="col-12 mb-3">
-              <label class="form-label">
+            <div className="col-12 mb-3">
+              <label className="form-label">
                 Insert a marker on the exact location of the event
               </label>
-              {/* <div class="shadow p-3 mb-5 bg-body rounded "> */}
-              <div class="shadow p-1 mb-3 rounded">
+              {/* <div className="shadow p-3 mb-5 bg-body rounded "> */}
+              <div className="shadow p-1 mb-3 rounded">
                 <MapComp coords={coords} isEventDetail={false} />
               </div>
             </div>
-            <hr class="mb-3" />
+            <hr className="mb-3" />
 
             <button
-              class="w-100 btn btn-primary btn-lg"
+              className="w-100 btn btn-primary btn-lg"
               type="submit"
               onClick={submitForm}
             >

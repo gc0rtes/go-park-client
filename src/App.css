@@ -65,6 +65,11 @@ h6 {
   height: 15vw;
   object-fit: cover;
 }
+.img-fit-cover-detail {
+  width: 100%;
+  height: 30vw;
+  object-fit: cover;
+}
 
 /*========= Style to Post an event =====*/
 .container-form {
