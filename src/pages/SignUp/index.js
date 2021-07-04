@@ -30,72 +30,74 @@ export default function SignUp() {
   }
 
   return (
-    <form>
-      <h2>Sign Up</h2>
+    <div className="container">
+      <form>
+        <h2>Sign Up</h2>
 
-      <p>
-        <label>
-          {" "}
-          Profile Photo:{" "}
-          <input
-            type="text"
-            value={imageUrl}
-            placeholder="image url"
-            onChange={(e) => setImageUrl(e.target.value)}
-          />
-        </label>
-      </p>
+        <p>
+          <label>
+            {" "}
+            Profile Photo:{" "}
+            <input
+              type="text"
+              value={imageUrl}
+              placeholder="image url"
+              onChange={(e) => setImageUrl(e.target.value)}
+            />
+          </label>
+        </p>
 
-      <p>
-        <label>
-          {" "}
-          Name:{" "}
-          <input
-            type="text"
-            value={name}
-            placeholder="Enter your name"
-            onChange={(e) => setName(e.target.value)}
-            required
-          />
-        </label>
-      </p>
+        <p>
+          <label>
+            {" "}
+            Name:{" "}
+            <input
+              type="text"
+              value={name}
+              placeholder="Enter your name"
+              onChange={(e) => setName(e.target.value)}
+              required
+            />
+          </label>
+        </p>
 
-      <p>
-        <label>
-          {" "}
-          Email address:{" "}
-          <input
-            type="email"
-            value={email}
-            placeholder="Enter email"
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
-        </label>
-      </p>
-      <p>
-        <label>
-          {" "}
-          Password:{" "}
-          <input
-            type="password"
-            value={password}
-            placeholder="Password"
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-        </label>
-      </p>
-      <p>
-        <button type="submit" onClick={submitForm}>
-          Sign Up
-        </button>
-      </p>
-      <p>
-        <Link to="/login" style={{ textAlign: "center" }}>
-          Click here to log in
-        </Link>
-      </p>
-    </form>
+        <p>
+          <label>
+            {" "}
+            Email address:{" "}
+            <input
+              type="email"
+              value={email}
+              placeholder="Enter email"
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+          </label>
+        </p>
+        <p>
+          <label>
+            {" "}
+            Password:{" "}
+            <input
+              type="password"
+              value={password}
+              placeholder="Password"
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+          </label>
+        </p>
+        <p>
+          <button type="submit" onClick={submitForm}>
+            Sign Up
+          </button>
+        </p>
+        <p>
+          <Link to="/login" style={{ textAlign: "center" }}>
+            Click here to log in
+          </Link>
+        </p>
+      </form>
+    </div>
   );
 }

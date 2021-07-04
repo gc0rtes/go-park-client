@@ -1,18 +1,462 @@
-.App {
-  text-align: center;
+/*My style*/
+
+.margin-bottom {
+  margin-bottom: 10px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+/* Common to all templates */
+.bd-placeholder-img {
+  font-size: 1.125rem;
+  text-anchor: middle;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+}
+/* From 'navbar-top-fixed' Large (lg) devices */
+@media (min-width: 768px) {
+  .bd-placeholder-img-lg {
+    font-size: 3.5rem;
+  }
+}
+
+/* From 'blog'*/
+.display-4 {
+  font-size: 2.5rem;
+}
+@media (min-width: 768px) {
+  .display-4 {
+    font-size: 3rem;
+  }
+}
+
+/* From 'navbar-top-fixed.css'
+Show it is fixed to the top */
+body {
+  min-height: 75rem;
+  padding-top: 4.5rem;
+}
+/*From 'cover'*/
+.land-page-body {
+  text-shadow: 0 0.05rem 0.1rem rgba(0, 0, 0, 0.5);
+  box-shadow: inset 0 0 5rem rgba(0, 0, 0, 0.5);
+}
+/*From 'blog' with fonts from client-park*/
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Roboto Slab", serif, "Libre Baskerville", serif;
+  font-weight: 800;
+}
+
+/* From 'cover' Custom default button*/
+.btn-secondary,
+.btn-secondary:hover,
+.btn-secondary:focus {
+  color: #333;
+  text-shadow: none; /* Prevent inheritance from `body` */
+}
+
+/*========= TRICK TO FIT STANDART IMG ON CARD =====*/
+.img-fit-cover {
+  width: 100%;
+  height: 15vw;
+  object-fit: cover;
+}
+.img-fit-cover-detail {
+  width: 100%;
+  height: 30vw;
+  object-fit: cover;
+}
+
+/*========= Style to Post an event =====*/
+.container-form {
+  max-width: 960px;
+}
+
+/*========= Style tag name =====*/
+.tag {
+  border-radius: 5px;
+  padding: 1px 3px;
+
+  color: white;
+  font-weight: bold;
+  font-size: 0.85em;
+  background: rgb(147, 20, 163);
+  box-shadow: 0 3px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2),
+    0 1px 5px 0 rgba(0, 0, 0, 0.12);
+  /* box-shadow: 2px 2px black; */
+}
+
+/* Login Form Made with love by Mutiullah Samim*/
+
+@import url("https://fonts.googleapis.com/css?family=Numans");
+/* 
+html,
+body {
+  background-image: url("http://getwallpapers.com/wallpaper/full/a/5/d/544750.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 100%;
+  font-family: "Numans", sans-serif;
+} */
+
+.login-body {
+  background-image: url("http://getwallpapers.com/wallpaper/full/a/5/d/544750.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 100%;
+  font-family: "Numans", sans-serif;
+}
+
+.mylogin-container {
+  height: 75vh;
+  background-image: url("./resources/images/background4.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+.my-login-card {
+  position: relative;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  min-width: 0;
+  word-wrap: break-word;
+  background-color: #fff;
+  background-clip: border-box;
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  border-radius: 0.25rem;
+}
+
+.login-card {
+  height: 370px;
+  /* height: 70vh; */
+  margin-top: auto;
+  margin-bottom: auto;
+  width: 300px;
+  background-color: rgba(0, 0, 0, 0.5) !important;
+}
+
+.social_icon span {
+  font-size: 60px;
+  margin-left: 10px;
+  color: #ffc312;
+}
+
+.social_icon span:hover {
+  color: white;
+  cursor: pointer;
+}
+
+/* .login-card-header h3 {
+  color: white;
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+  padding-right: 1.25rem;
+  padding-left: 1.25rem;
+} */
+.login-card-header h3 {
+  color: white;
+}
+.input-group-text-w-h {
+  height: 38px;
+  width: 50px;
+}
+
+.form-group-margin {
+  margin-bottom: 1rem;
+}
+.social_icon {
+  position: absolute;
+  right: 20px;
+  top: -45px;
+}
+
+.input-group-prepend span {
+  width: 50px;
+  background-color: #1b28da;
+  color: black;
+  border: 0 !important;
+}
+
+input:focus {
+  outline: 0 0 0 0 !important;
+  box-shadow: 0 0 0 0 !important;
+}
+
+.remember {
+  color: white;
+  margin-bottom: 15px;
+}
+
+.remember input {
+  width: 20px;
+  height: 20px;
+  margin-left: 15px;
+  margin-right: 5px;
+}
+
+.login_btn {
+  color: whitesmoke;
+  background-color: #1b28da;
+  width: 100px;
+}
+
+.login_btn:hover {
+  color: black;
+  background-color: white;
+}
+
+.login-links {
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.login-links a {
+  margin-left: 4px;
+}
+
+/* ============FROM card-blog-2 ============*/
+
+/* ============ Cards ============ */
+.card {
+  display: inline-block;
+  position: relative;
+  width: 100%;
+  margin-bottom: 30px;
+  border-radius: 6px;
+  color: rgba(0, 0, 0, 0.87);
+  background: #fff;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2),
+    0 1px 5px 0 rgba(0, 0, 0, 0.12);
+}
+
+.card .card-image {
+  height: 60%;
+  position: relative;
+  overflow: hidden;
+  margin-left: 15px;
+  margin-right: 15px;
+  margin-top: -30px;
+  border-radius: 6px;
+  box-shadow: 0 16px 38px -12px rgba(0, 0, 0, 0.56),
+    0 4px 25px 0px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.2);
+}
+
+.card .card-image img {
+  /* width: 100%;
+  height: 100%; */
+  width: 100%;
+  height: 15vw;
+  object-fit: cover;
+  border-radius: 6px;
+  pointer-events: none;
+}
+
+.card .card-image .card-caption {
+  position: absolute;
+  bottom: 15px;
+  left: 15px;
+  color: #fff;
+  font-size: 1.3em;
+  text-shadow: 0 2px 5px rgba(33, 33, 33, 0.5);
+}
+
+.card img {
+  width: 100%;
+  height: auto;
+  /* width: 100%;
+  height: 15vw;
+  object-fit: cover; */
+}
+
+.img-raised {
+  box-shadow: 0 16px 38px -12px rgba(0, 0, 0, 0.56),
+    0 4px 25px 0px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.2);
+}
+
+.card .ftr {
+  margin-top: 15px;
+}
+
+.card .ftr div {
+  display: inline-block;
+}
+
+.card .ftr .author {
+  color: #888;
+}
+
+.card .ftr .stats {
+  float: right;
+  line-height: 30px;
+}
+
+.card .ftr .stats {
+  position: relative;
+  top: 1px;
+  font-size: 14px;
+}
+
+/* ============ Card Table ============ */
+
+.table {
+  margin-bottom: 0px;
+}
+
+.card .table {
+  padding: 15px 30px;
+}
+
+.card .table-primary {
+  background: linear-gradient(60deg, #ab47bc, #7b1fa2);
+}
+
+.card .table-info {
+  background: linear-gradient(60deg, #26c6da, #0097a7);
+}
+
+.card .table-success {
+  background: linear-gradient(60deg, #66bb6a, #388e3c);
+}
+
+.card .table-warning {
+  background: linear-gradient(60deg, #ffa726, #f57c00);
+}
+
+.card .table-danger {
+  background: linear-gradient(60deg, #ef5350, #d32f2f);
+}
+
+.card .table-rose {
+  background: linear-gradient(60deg, #ec407a, #c2185b);
+}
+
+.card [class*="table-"] {
+  color: #ffffff;
+  border-radius: 6px;
+}
+
+.card [class*="table-"] .card-caption a,
+.card [class*="table-"] .card-caption,
+.card [class*="table-"] .icon i {
+  color: #ffffff;
+}
+
+.card [class*="table-"] .icon i {
+  border-color: rgba(255, 255, 255, 0.25);
+}
+
+.card [class*="table-"] .author a,
+.card [class*="table-"] .ftr .stats,
+.card [class*="table-"] .category,
+.card [class*="table-"] .card-description {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.card [class*="table-"] .author a:hover,
+.card [class*="table-"] .author a:focus,
+.card [class*="table-"] .author a:active {
+  color: #ffffff;
+}
+
+.card [class*="table-"] h1 small,
+.card [class*="table-"] h2 small,
+.card [class*="table-"] h3 small {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+/* ============ Card Blog ============ */
+
+.card-blog {
+  margin-top: 30px;
+}
+
+.card-blog .card-caption {
+  margin-top: 5px;
+}
+
+.card-blog .card-image + .category {
+  margin-top: 20px;
+}
+
+.card-raised {
+  box-shadow: 0 16px 38px -12px rgba(0, 0, 0, 0.56),
+    0 4px 25px 0px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.2);
+}
+
+/* ============ Card Category ============ */
+
+.category {
+  position: relative;
+  line-height: 0;
+  margin: 15px 0;
+}
+
+.card .category-social .fas {
+  font-size: 24px;
+  position: relative;
+  margin-top: -4px;
+  top: 2px;
+  margin-right: 5px;
+}
+
+/* ============ Card Author ============ */
+
+.card .author .avatar {
+  width: 36px;
+  height: 36px;
+  overflow: hidden;
+  border-radius: 50%;
+  margin-right: 5px;
+}
+
+.card .author a {
+  color: #333;
+  text-decoration: none;
+}
+
+.card .author a .ripple-cont {
+  display: none;
+}
+
+/* ============ Text Color ============ */
+
+.text-warning {
+  color: #ff9800;
+}
+
+.text-primary {
+  color: #9c27b0;
+}
+
+.text-danger {
+  color: #f44336;
+}
+
+.text-success {
+  color: #4caf50;
+}
+
+.text-info {
+  color: #00bcd4;
+}
+
+.text-rose {
+  color: #e91e63;
+}
+
+.text-gray {
+  color: #888;
+}
+
+/* ============ FONT AWESOME FA CLASS ============ */
+
+.fas {
+  display: inline-block;
+  font: normal normal normal 14px/1 FontAwesome;
+  font-size: inherit;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }

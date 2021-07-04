@@ -6,7 +6,8 @@ import { useSelector, useDispatch } from "react-redux";
 import moment from "moment";
 
 //EventCard component
-import EventCard from "../../components/EventCard";
+//import EventCard from "../../components/EventCard";
+import ModernCard from "../../components/ModernCard";
 
 //Actions and Selectors
 import { selectAllEvents } from "../../store/events/selectors";
@@ -103,24 +104,33 @@ export default function SearchEvent() {
   console.log("what is filterTomorrow", filterTomorrow);
 
   return (
-    <div>
-      <h3>Search Page</h3>
-      {/* wrapping our input in a form so we can pass a function onSubmit */}
-      <form onSubmit={handleSubmit}>
-        <input
-          type="search"
-          value={searchText}
-          onChange={(event) => {
-            setSearchText(event.target.value.toLowerCase());
-          }}
-        />
-      </form>
-      <button value={""} onClick={(e) => setSearchText(e.target.value)}>
+    <div className="container">
+      <div className="p-4 p-md-5 mb-4 text-black rounded bg-light">
+        <h3>Find your event here!</h3>
+        {/* wrapping our input in a form so we can pass a function onSubmit */}
+        <form onSubmit={handleSubmit}>
+          <input
+            type="search"
+            value={searchText}
+            onChange={(event) => {
+              setSearchText(event.target.value.toLowerCase());
+            }}
+          />
+        </form>
+      </div>
+      <button
+        type="button"
+        className="btn btn-primary"
+        value={""}
+        onClick={(e) => setSearchText(e.target.value)}
+      >
         All
       </button>
       {tags.map((tag, index) => {
         return (
           <button
+            type="button"
+            className="btn btn-primary"
             key={index}
             value={tag.toLowerCase()}
             onClick={(e) => setSearchText(e.target.value)}
@@ -161,8 +171,20 @@ export default function SearchEvent() {
         })}
       </select>
       <br />
-      <button onClick={() => setResults(filterToday)}>Today</button>
-      <button onClick={() => setResults(filterTomorrow)}>Tomorrow</button>
+      <button
+        type="button"
+        className="btn btn-primary"
+        onClick={() => setResults(filterToday)}
+      >
+        Today
+      </button>
+      <button
+        type="button"
+        className="btn btn-primary"
+        onClick={() => setResults(filterTomorrow)}
+      >
+        Tomorrow
+      </button>
       <p>
         {/* showing the amount of search results with 3 different cases:
       no results, 1 result, more than 1 */}
@@ -172,18 +194,21 @@ export default function SearchEvent() {
           ? `${results.length} result`
           : `${results.length} results`}
       </p>
-      <div>
+      <div className="row">
         {results.map((event) => {
           return (
-            <EventCard
-              key={event.id}
-              id={event.id}
-              imageUrl={event.imageUrl}
-              title={event.title}
-              startDate={event.startDate}
-              parkName={event.park.name}
-              cityName={event.park.city.name}
-            />
+            <div key={event.id} className="col-md-4">
+              <ModernCard
+                id={event.id}
+                imageUrl={event.imageUrl}
+                title={event.title}
+                startDate={moment(event.startDate).format("ll")}
+                startHour={event.startHour}
+                parkName={event.park.name}
+                cityName={event.park.city.name}
+                tag={event.tag}
+              />
+            </div>
           );
         })}
       </div>
