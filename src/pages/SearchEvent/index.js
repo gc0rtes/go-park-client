@@ -9,6 +9,8 @@ import moment from "moment";
 //import EventCard from "../../components/EventCard";
 import ModernCard from "../../components/ModernCard";
 
+import SearchMap from "../../components/SearchMap";
+
 //Actions and Selectors
 import { selectAllEvents } from "../../store/events/selectors";
 import { fetchEvents } from "../../store/events/actions";
@@ -33,7 +35,8 @@ export default function SearchEvent() {
 
   // const [events] = useState(allEvents);
   const [searchText, setSearchText] = useState("");
-  const [results, setResults] = useState([]);
+  const [results, setResults] = useState(allEvents);
+  console.log("what is results", results);
 
   useEffect(() => {
     dispatch(fetchEvents());
@@ -79,10 +82,10 @@ export default function SearchEvent() {
   // console.log("what is tomorrow?", tomorrow);
 
   const formatTomorrow = tomorrow.format("YYYY-MM-DD");
-  console.log("what is formatTomorrow?", formatTomorrow);
+  // console.log("what is formatTomorrow?", formatTomorrow);
 
   const formatToday = moment().format("YYYY-MM-DD");
-  console.log("what is formatToday?", formatToday);
+  // console.log("what is formatToday?", formatToday);
 
   // const startDateEvent = allEvents[1]?.startDate;
   // console.log("what is startDateEvent", startDateEvent);
@@ -96,15 +99,17 @@ export default function SearchEvent() {
   const filterToday = allEvents?.filter((event) =>
     moment(event.startDate).isSame(formatToday)
   );
-  console.log("what is filterToday", filterToday);
+  // console.log("what is filterToday", filterToday);
 
   const filterTomorrow = allEvents?.filter((event) =>
     moment(event.startDate).isSame(formatTomorrow)
   );
-  console.log("what is filterTomorrow", filterTomorrow);
+  // console.log("what is filterTomorrow", filterTomorrow);
 
   return (
     <div className="container">
+      <SearchMap results={results} />
+
       <div className="p-4 p-md-5 mb-4 text-black rounded bg-light">
         <h3>Find your event here!</h3>
         {/* wrapping our input in a form so we can pass a function onSubmit */}
@@ -121,7 +126,7 @@ export default function SearchEvent() {
       <button
         type="button"
         className="btn btn-primary"
-        value={""}
+        value={[""]}
         onClick={(e) => setSearchText(e.target.value)}
       >
         All
