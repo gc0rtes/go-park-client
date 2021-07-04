@@ -1,11 +1,20 @@
 import { NavLink } from "react-router-dom";
 import logo from "../../resources/images/logo.png";
+import LoggedIn from "./LoggedIn";
+import LoggedOut from "./LoggedOut";
+import { useSelector } from "react-redux";
+import { selectToken, selectUser } from "../../store/user/selectors";
 
 export default function Navbar() {
+  const token = useSelector(selectToken);
+  const user = useSelector(selectUser);
+
+  const loginLogoutControls = token ? <LoggedIn /> : <LoggedOut />;
+
   return (
     <nav className="navbar navbar-expand-md navbar-dark fixed-top bg-dark ">
       <div className="container-fluid">
-        <NavLink exact to="/" className="navbar-brand" href="#">
+        <NavLink exact to="/" className="navbar-brand">
           <img src={logo} alt="logo" width="50px" /> GoPark!
         </NavLink>
         <button
@@ -27,26 +36,24 @@ export default function Navbar() {
                 to="/"
                 className="nav-link active"
                 aria-current="page"
-                href="#"
               >
                 HOME
               </NavLink>
             </li>
             <li className="nav-item">
-              <NavLink to="/search" className="nav-link" href="#">
+              <NavLink to="/search" className="nav-link">
                 SEARCH
               </NavLink>
             </li>
-            <li className="nav-item">
-              <NavLink to="/postevent" className="nav-link" href="#">
-                CREATE
-              </NavLink>
+            <li className="nav-item ">
+              {token ? (
+                <NavLink to="/postevent" className="nav-link">
+                  ADD EVENT
+                </NavLink>
+              ) : null}
             </li>
-            <li className="nav-item">
-              <NavLink to="/login" className="nav-link" href="#">
-                SIGN IN
-              </NavLink>
-            </li>
+            <li className="nav-item">{loginLogoutControls}</li>
+            <li className="text-light ">{token ? user.email : null}</li>
           </ul>
           <form className="d-flex">
             <input
