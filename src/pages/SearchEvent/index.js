@@ -126,8 +126,8 @@ export default function SearchEvent() {
       <button
         type="button"
         className="btn btn-primary"
-        value={[""]}
-        onClick={(e) => setSearchText(e.target.value)}
+        // value={[""]}
+        onClick={() => setResults(allEvents)}
       >
         All
       </button>
