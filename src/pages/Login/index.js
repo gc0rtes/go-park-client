@@ -52,7 +52,7 @@ export default function SignIn() {
               <div className="input-group form-group form-group-margin">
                 <div className="input-group-prepend">
                   <span className="input-group-text input-group-text-w-h">
-                    <i className="fas fa-user" style={{ fontSize: "22px" }}></i>
+                    <i className="fas fa-at" style={{ fontSize: "22px" }}></i>
                   </span>
                 </div>
                 <input
