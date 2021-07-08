@@ -328,7 +328,11 @@ export default function PostEvent() {
               </label>
               {/* <div className="shadow p-3 mb-5 bg-body rounded "> */}
               <div className="shadow p-1 mb-3 rounded">
-                <MapComp coords={coords} isEventDetail={false} />
+                <MapComp
+                  coords={coords}
+                  isEventDetail={false}
+                  height={"500px"}
+                />
               </div>
             </div>
             <hr className="mb-3" />

@@ -39,47 +39,74 @@ export default function ArtDetail() {
 
   return (
     <div className="container bg-light shadow p-3 my-3  rounded border">
-      <div className="row  justify-content-center">
-        <div className="py-5 col-md-6 ">
+      <div className="row justify-content-center ">
+        <div className="p-3 col-md-10 ">
+          <h5 className="text-secondary">
+            {moment(event.startDate).format("dddd")},{" "}
+            {moment(event.startDate).format("ll")} at {event.startHour}
+          </h5>
+          <h2>{event.title}</h2>
+          <h6 className="text-secondary"> Hosted by {event.owner.name}</h6>
+        </div>
+        <div className="p-3 col-md-6 ">
           <div>
             <img
               className="img-fit-cover-detail shadow rounded mb-3 p-2"
               src={event.imageUrl}
               alt={event.title}
             />
+            <span className="tag">{event.tag}</span>
           </div>
-          <div className="text-center">
-            <h4>{event.title}</h4>
-            <h5>
-              <i className="far fa-calendar-alt"></i> &nbsp;
-              {moment(event.startDate).format("ll")}
-            </h5>
-            <h5>
-              <i className="fa fa-clock-o"></i> &nbsp; {event.startHour}
-            </h5>
-            <h5>
-              <i class="fas fa-map-marker-alt"></i> &nbsp; {event.park.name} -
-              &nbsp;{event.park.city.name}
-            </h5>
 
-            <h5>{event.going.length} people are going</h5>
+          <hr />
+          <h4>Event description</h4>
+          <p> {event.description} </p>
+          <hr />
+          <h4>Contact Information</h4>
+          <p>
+            <i class="fas fa-user-circle"></i> {event.owner.name}
+          </p>
+          {event.phone ? (
+            <p>
+              <i class="fas fa-mobile-alt"></i> {event.phone}
+            </p>
+          ) : null}
+
+          {/* TODO: show cards with people that are going */}
+          {/* TODO: button to show comments here */}
+          {/* TODO: Make a Component form to Post a new comment */}
+        </div>
+        <div className="py-3 col-md-4 rounded ">
+          <div className="text-left p-3 shadow">
+            <p>
+              <i className="far fa-calendar-alt"></i> &nbsp;
+              {moment(event.startDate).format("dddd")},{" "}
+              {moment(event.startDate).format("ll")}
+            </p>
+
+            <p>
+              <i className="fa fa-clock-o"></i> &nbsp; {event.startHour}
+            </p>
+            <p>
+              <i className="fas fa-map-marker-alt"></i> &nbsp; {event.park.name}{" "}
+              - &nbsp;{event.park.city.name}
+            </p>
+
+            <p>
+              <i class="fas fa-users"></i>&nbsp;{event.going.length} people are
+              going &nbsp;
+            </p>
+
             {user.token ? (
-              <p>
-                <button>Going</button>
-              </p>
+              <button className="btn btn-primary w-100">
+                <i class="far fa-plus-square"></i> Join
+              </button>
             ) : null}
           </div>
 
-          <hr />
-          <h4>Event Info.:</h4>
-          <p> {event.description} </p>
-          <h4>Contact Info.:</h4>
-          <h5>Name: {event.owner.name}</h5>
-          {event.phone ? <h5>Phone: {event.phone}</h5> : null}
-          <hr />
-          <MapComp coords={coords} isEventDetail={true} />
-          {/* TODO: button to show comments here */}
-          {/* TODO: Make a Component form to Post a new comment */}
+          <div className="py-3 shadow">
+            <MapComp coords={coords} isEventDetail={true} height={"300px"} />
+          </div>
         </div>
       </div>
     </div>
