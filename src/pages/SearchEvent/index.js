@@ -107,10 +107,10 @@ export default function SearchEvent() {
   // console.log("what is filterTomorrow", filterTomorrow);
 
   return (
-    <div className="container">
+    <div className="container rounded border p-3 my-3 ">
       <SearchMap results={results} />
 
-      <div className="p-4 p-md-5 mb-4 text-black rounded bg-light">
+      <div className="p-4 p-md-5 mb-4 text-black rounded bg-light border">
         <h3>Find your event here!</h3>
         {/* wrapping our input in a form so we can pass a function onSubmit */}
         <form onSubmit={handleSubmit}>

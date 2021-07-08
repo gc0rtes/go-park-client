@@ -1,5 +1,8 @@
+//Ref. Nav-bar with image dropdown
+
 import { NavLink } from "react-router-dom";
 import logo from "../../resources/images/logo.png";
+
 import LoggedIn from "./LoggedIn";
 import LoggedOut from "./LoggedOut";
 import { useSelector } from "react-redux";
@@ -15,7 +18,7 @@ export default function Navbar() {
     <nav className="navbar navbar-expand-md navbar-dark fixed-top bg-dark ">
       <div className="container-fluid">
         <NavLink exact to="/" className="navbar-brand">
-          <img src={logo} alt="logo" width="50px" /> GoPark!
+          <img src={logo} alt="logo" width="50px" /> &nbsp; GoPark!
         </NavLink>
         <button
           className="navbar-toggler"
@@ -29,14 +32,11 @@ export default function Navbar() {
           <span className="navbar-toggler-icon"></span>
         </button>
         <div className="collapse navbar-collapse" id="navbarCollapse">
-          <ul className="navbar-nav me-auto mb-2 mb-md-0">
+          {/* me-auto => margin end-auto. Changing .me-auto to .ms-auto
+          shifts it to the right. */}
+          <ul className="navbar-nav ms-auto me-auto mb-2 mb-md-0">
             <li className="nav-item">
-              <NavLink
-                exact
-                to="/"
-                className="nav-link active"
-                aria-current="page"
-              >
+              <NavLink exact to="/" className="nav-link " aria-current="page">
                 HOME
               </NavLink>
             </li>
@@ -50,12 +50,22 @@ export default function Navbar() {
                 <NavLink to="/postevent" className="nav-link">
                   ADD EVENT
                 </NavLink>
-              ) : null}
+              ) : (
+                <a
+                  className="nav-link disabled"
+                  href="/postevent"
+                  tabindex="-1"
+                  aria-disabled="true"
+                >
+                  ADD EVENT
+                </a>
+              )}
             </li>
-            <li className="nav-item">{loginLogoutControls}</li>
-            <li className="text-light ">{token ? user.email : null}</li>
           </ul>
-          <form className="d-flex">
+          <ul className="navbar-nav ms-auto">
+            <li className="nav-item me-3">{loginLogoutControls}</li>
+          </ul>
+          {/* <form className="d-flex">
             <input
               className="form-control me-2"
               type="search"
@@ -65,7 +75,7 @@ export default function Navbar() {
             <button className="btn btn-outline-secondary" type="submit">
               Search
             </button>
-          </form>
+          </form> */}
         </div>
       </div>
     </nav>

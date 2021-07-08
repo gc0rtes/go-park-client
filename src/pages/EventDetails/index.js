@@ -38,7 +38,7 @@ export default function ArtDetail() {
   }
 
   return (
-    <div className="container bg-light shadow p-3 my-3  rounded ">
+    <div className="container bg-light shadow p-3 my-3  rounded border">
       <div className="row  justify-content-center">
         <div className="py-5 col-md-6 ">
           <div>
