@@ -17,6 +17,7 @@ import Events from "./pages/Events";
 import EventDetails from "./pages/EventDetails";
 import PostEvent from "./pages/PostEvent";
 import SearchEvent from "./pages/SearchEvent";
+import LandPage from "./pages/LandPage";
 
 import { useDispatch, useSelector } from "react-redux";
 import { selectAppLoading } from "./store/appState/selectors";
@@ -36,7 +37,8 @@ function App() {
       {isLoading ? "Loading App" : null}
       <Navbar />
       <Switch>
-        <Route exact path="/" component={Events} />
+        <Route exact path="/" component={LandPage} />
+        <Route exact path="/landpage" component={LandPage} />
         <Route path="/login" component={Login} />
         <Route path="/signup" component={SignUp} />
         <Route path="/postevent" component={PostEvent} />

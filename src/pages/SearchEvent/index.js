@@ -107,98 +107,117 @@ export default function SearchEvent() {
   // console.log("what is filterTomorrow", filterTomorrow);
 
   return (
-    <div className="container">
-      <SearchMap results={results} />
+    <div className="container p-3 my-3 rounded shadow border  ">
+      <div className="row justify-content-center">
+        <div className="col-md-6 my-3">
+          <SearchMap results={results} />
+        </div>
+        <div className="col-md-4">
+          <div className="p-3 my-3 shadow">
+            <h6 className="text-secondary">Select by category</h6>
+            <button
+              type="button"
+              className="btn btn-primary"
+              // value={[""]}
+              onClick={() => setResults(allEvents)}
+            >
+              All
+            </button>
+            {tags.map((tag, index) => {
+              return (
+                <button
+                  type="button"
+                  className="btn btn-primary m-1"
+                  key={index}
+                  value={tag.toLowerCase()}
+                  onClick={(e) => setSearchText(e.target.value)}
+                >
+                  {tag}
+                </button>
+              );
+            })}
+          </div>
 
-      <div className="p-4 p-md-5 mb-4 text-black rounded bg-light">
-        <h3>Find your event here!</h3>
-        {/* wrapping our input in a form so we can pass a function onSubmit */}
-        <form onSubmit={handleSubmit}>
-          <input
-            type="search"
-            value={searchText}
-            onChange={(event) => {
-              setSearchText(event.target.value.toLowerCase());
-            }}
-          />
-        </form>
-      </div>
-      <button
-        type="button"
-        className="btn btn-primary"
-        // value={[""]}
-        onClick={() => setResults(allEvents)}
-      >
-        All
-      </button>
-      {tags.map((tag, index) => {
-        return (
-          <button
-            type="button"
-            className="btn btn-primary"
-            key={index}
-            value={tag.toLowerCase()}
-            onClick={(e) => setSearchText(e.target.value)}
-          >
-            {tag}
-          </button>
-        );
-      })}
-      <br />
+          <div className="p-3 my-4 shadow">
+            <h6 className="text-secondary">Select by city or park</h6>
+            <select
+              name="city"
+              className="form-control my-2"
+              value={""}
+              onChange={(e) => setSearchText(e.target.value)}
+            >
+              <option defaultValue> Select a City:</option>
+              {cityName.map((name, index) => {
+                return (
+                  <option key={index} value={name.toLowerCase()}>
+                    {name}
+                  </option>
+                );
+              })}
+            </select>
+            <select
+              name="park"
+              className="form-control my-2"
+              value={""}
+              onChange={(e) => setSearchText(e.target.value)}
+            >
+              <option defaultValue>Select a Park:</option>
+              {parkName.map((name, index) => {
+                return (
+                  <option key={index} value={name.toLowerCase()}>
+                    {name}
+                  </option>
+                );
+              })}
+            </select>
+          </div>
 
-      <select
-        name="city"
-        value={""}
-        onChange={(e) => setSearchText(e.target.value)}
-      >
-        <option defaultValue> Select a City:</option>
-        {cityName.map((name, index) => {
-          return (
-            <option key={index} value={name.toLowerCase()}>
-              {name}
-            </option>
-          );
-        })}
-      </select>
-
-      <select
-        name="park"
-        value={""}
-        onChange={(e) => setSearchText(e.target.value)}
-      >
-        <option defaultValue>Select a Park:</option>
-        {parkName.map((name, index) => {
-          return (
-            <option key={index} value={name.toLowerCase()}>
-              {name}
-            </option>
-          );
-        })}
-      </select>
-      <br />
-      <button
-        type="button"
-        className="btn btn-primary"
-        onClick={() => setResults(filterToday)}
-      >
-        Today
-      </button>
-      <button
-        type="button"
-        className="btn btn-primary"
-        onClick={() => setResults(filterTomorrow)}
-      >
-        Tomorrow
-      </button>
-      <p>
-        {/* showing the amount of search results with 3 different cases:
+          <div className="p-3 my-4 shadow">
+            <h6 className="text-secondary">Select by period</h6>
+            <button
+              type="button"
+              className="btn btn-primary"
+              onClick={() => setResults(filterToday)}
+            >
+              Today
+            </button>
+            <button
+              type="button"
+              className="btn btn-primary m-1"
+              onClick={() => setResults(filterTomorrow)}
+            >
+              Tomorrow
+            </button>
+          </div>
+        </div>
+        <hr />
+        <div className="row m-3 justify-content-center text-black rounded bg-light ">
+          <div className="p-2 col-md-3 text-center">
+            <h4>Find your event here!</h4>
+            {/* wrapping our input in a form so we can pass a function onSubmit */}
+            <form onSubmit={handleSubmit}>
+              <input
+                type="search"
+                className="form-control"
+                value={searchText}
+                onChange={(event) => {
+                  setSearchText(event.target.value.toLowerCase());
+                }}
+              />
+            </form>
+            <p>
+              {/* showing the amount of search results with 3 different cases:
       no results, 1 result, more than 1 */}
-        {results.length < 1
-          ? "Sorry, nothing matches your search"
-          : results.length === 1
-          ? `${results.length} result`
-          : `${results.length} results`}
-      </p>
+              {results.length < 1
+                ? "Sorry, nothing matches your search"
+                : results.length === 1
+                ? `${results.length} result`
+                : `${results.length} results`}
+            </p>
+          </div>
+          <hr />
+        </div>
+      </div>
       <div className="row">
         {results.map((event) => {
           return (

@@ -30,7 +30,7 @@ export default function Artwork({
         </div>
         <h5 className="card-caption">{title}</h5>
         <p className="card-description">
-          &bull; {parkName} &bull; {cityName}
+          {parkName} &bull; {cityName}
         </p>
         <div className="ftr">
           <div className="author">

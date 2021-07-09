@@ -126,10 +126,10 @@ export default function PostEvent() {
   }, [coords]);
 
   if (!token) {
-    return <div>You need to login to post a Event</div>;
+    history.push("/login");
   }
   return (
-    <div className="container container-form bg-light shadow p-3 mb-5  rounded ">
+    <div className="container container-form  shadow p-3 my-3  rounded ">
       <div className="row g-5 justify-content-center">
         <div className="py-5 col-md-8 text-center">
           {/* <img className="d-block mx-auto mb-4" src="../assets/brand/bootstrap-logo.svg" alt="" width="72" height="57"> */}
@@ -328,7 +328,11 @@ export default function PostEvent() {
               </label>
               {/* <div className="shadow p-3 mb-5 bg-body rounded "> */}
               <div className="shadow p-1 mb-3 rounded">
-                <MapComp coords={coords} isEventDetail={false} />
+                <MapComp
+                  coords={coords}
+                  isEventDetail={false}
+                  height={"500px"}
+                />
               </div>
             </div>
             <hr className="mb-3" />

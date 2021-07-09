@@ -46,7 +46,7 @@ function SetViewOnClick({ coords }) {
 }
 
 //Map Component start HERE
-function MapComp({ coords, isEventDetail }) {
+function MapComp({ coords, isEventDetail, height }) {
   const dispatch = useDispatch();
 
   //This make the marker on map change
@@ -56,7 +56,7 @@ function MapComp({ coords, isEventDetail }) {
       click: (e) => {
         const y = e.latlng.lat;
         const x = e.latlng.lng;
-        console.log("You clicked the map at LAT: " + y + " and LNG: " + x);
+        // console.log("You clicked the map at LAT: " + y + " and LNG: " + x);
         setMarkerPosition([y, x]);
         dispatch(eventMarkerPosition(y, x));
       },
@@ -66,7 +66,7 @@ function MapComp({ coords, isEventDetail }) {
 
   return (
     <MapContainer
-      style={{ height: "500px", width: "600px" }}
+      style={{ height: height }}
       center={coords}
       zoom={15}
       scrollWheelZoom={isEventDetail ? true : false}
