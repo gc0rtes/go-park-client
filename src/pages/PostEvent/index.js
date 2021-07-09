@@ -83,7 +83,7 @@ export default function PostEvent() {
       )
     );
 
-    history.push("/search");
+    history.push("/");
   }
 
   //Get event position from Redux State and put in submitForm function
