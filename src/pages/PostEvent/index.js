@@ -126,7 +126,7 @@ export default function PostEvent() {
   }, [coords]);
 
   if (!token) {
-    return <div>You need to login to post a Event</div>;
+    history.push("/login");
   }
   return (
     <div className="container container-form  shadow p-3 my-3  rounded ">

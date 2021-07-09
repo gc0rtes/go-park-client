@@ -191,7 +191,7 @@ export default function SearchEvent() {
           </div>
         </div>
         <hr />
-        <div className="row m-3 justify-content-center text-black rounded bg-light shadow">
+        <div className="row m-3 justify-content-center text-black rounded bg-light ">
           <div className="p-2 col-md-3 text-center">
             <h4>Find your event here!</h4>
             {/* wrapping our input in a form so we can pass a function onSubmit */}
@@ -215,6 +215,7 @@ export default function SearchEvent() {
                 : `${results.length} results`}
             </p>
           </div>
+          <hr />
         </div>
       </div>
       <div className="row">

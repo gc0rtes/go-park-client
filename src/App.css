@@ -112,8 +112,8 @@ body {
 }
 
 .mylogin-container {
-  height: 75vh;
-  background-image: url("./resources/images/background4.png");
+  height: 100vh;
+  background-image: url("./resources/images/park9.jpg");
   background-size: cover;
   background-repeat: no-repeat;
 }

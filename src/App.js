@@ -37,7 +37,7 @@ function App() {
       {isLoading ? "Loading App" : null}
       <Navbar />
       <Switch>
-        <Route exact path="/" component={Events} />
+        <Route exact path="/" component={LandPage} />
         <Route exact path="/landpage" component={LandPage} />
         <Route path="/login" component={Login} />
         <Route path="/signup" component={SignUp} />
