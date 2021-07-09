@@ -15,7 +15,7 @@ export default function LandPage() {
     <div>
       <div
         id="myCarousel"
-        class="carousel slide container py-3"
+        class="carousel slide container p-3 my-3 shadow"
         data-bs-ride="carousel"
       >
         <div class="carousel-indicators">
