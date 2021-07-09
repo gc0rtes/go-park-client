@@ -10,7 +10,6 @@ import { selectToken, selectUser } from "../../store/user/selectors";
 
 export default function Navbar() {
   const token = useSelector(selectToken);
-  const user = useSelector(selectUser);
 
   const loginLogoutControls = token ? <LoggedIn /> : <LoggedOut />;
 

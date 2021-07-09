@@ -13,7 +13,7 @@ import MessageBox from "./components/MessageBox";
 import Navbar from "./components/Navigation";
 import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
-import Events from "./pages/Events";
+
 import EventDetails from "./pages/EventDetails";
 import PostEvent from "./pages/PostEvent";
 import SearchEvent from "./pages/SearchEvent";

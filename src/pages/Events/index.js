@@ -13,16 +13,16 @@ import moment from "moment";
 
 import background from "../../resources/images/background4.png";
 
-const tags = [
-  "Music",
-  "Sport",
-  "Meetup",
-  "Dance",
-  "MartialArt",
-  "Fitness",
-  "Game",
-  "Education",
-];
+// const tags = [
+//   "Music",
+//   "Sport",
+//   "Meetup",
+//   "Dance",
+//   "MartialArt",
+//   "Fitness",
+//   "Game",
+//   "Education",
+// ];
 
 export default function Events() {
   const dispatch = useDispatch();
