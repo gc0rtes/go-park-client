@@ -100,11 +100,11 @@ export default function SignUp() {
                   </span>
                 </div>
                 <input
-                  type="text"
+                  type="password"
                   className="form-control"
                   value={password}
                   placeholder="Password"
-                  onChange={(e) => setEmail(e.target.value)}
+                  onChange={(e) => setPassword(e.target.value)}
                   required
                 />
               </div>
