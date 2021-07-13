@@ -6,7 +6,7 @@ import logo from "../../resources/images/logo.png";
 import LoggedIn from "./LoggedIn";
 import LoggedOut from "./LoggedOut";
 import { useSelector } from "react-redux";
-import { selectToken, selectUser } from "../../store/user/selectors";
+import { selectToken } from "../../store/user/selectors";
 
 export default function Navbar() {
   const token = useSelector(selectToken);
