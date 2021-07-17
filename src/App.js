@@ -3,7 +3,7 @@ import "./App.css";
 
 import { Switch, Route } from "react-router-dom";
 
-// A bootstrap spining styling
+// TODO: A bootstrap spining styling
 // import Loading from "./components/Loading";
 
 //to manage the messages from the routers
